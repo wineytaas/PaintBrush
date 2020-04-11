@@ -20,7 +20,9 @@ import java.awt.geom.Line2D;
  */
 public class PaintBrushFrame extends javax.swing.JFrame{
 
+    public static Reta reta = new Reta();
     public static int opcaoAlgoritmo = 0;
+    
     /**
      * Creates new form PaintBrushFrame
      */
@@ -93,8 +95,8 @@ public class PaintBrushFrame extends javax.swing.JFrame{
 
         retaDDAJMenuItem.setText("Algoritmo DDA");
         retaDDAJMenuItem.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                retaDDAJMenuItemMouseClicked(evt);
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                retaDDAJMenuItemMousePressed(evt);
             }
         });
         jMenu2.add(retaDDAJMenuItem);
@@ -203,9 +205,10 @@ public class PaintBrushFrame extends javax.swing.JFrame{
         opcaoAlgoritmo = 1;
     }//GEN-LAST:event_PontosJMenuItemMouseClicked
 
-    private void retaDDAJMenuItemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_retaDDAJMenuItemMouseClicked
+    private void retaDDAJMenuItemMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_retaDDAJMenuItemMousePressed
         opcaoAlgoritmo = 2;
-    }//GEN-LAST:event_retaDDAJMenuItemMouseClicked
+        System.out.println("Opção MousePressed: " + opcaoAlgoritmo);
+    }//GEN-LAST:event_retaDDAJMenuItemMousePressed
 
     /**
      * @param args the command line arguments
@@ -240,30 +243,10 @@ public class PaintBrushFrame extends javax.swing.JFrame{
                 PaintBrushFrame paintBrushFrame = new PaintBrushFrame();
                 paintBrushFrame.setVisible(true);
                 paintBrushFrame.jPanel1.addMouseListener(new MouseAdapter() {
-                    int clickCount = 0;
-                    int x1 = 0;
-                    int y1 = 0;
-                    int x2 = 0;
-                    int y2 = 0;
+                    
                 @Override
                 public void mousePressed(MouseEvent e) {
-                    int x = e.getX();
-                    int y = e.getY();
-                    System.out.println(" X:" + x + " Y:" + y);
-                    
-                    if(clickCount % 2 == 0){
-                        x1 = x;
-                        y1 = y;
-                    }
-                    else{ 
-                        x2 = x;
-                        y2 = y;
-                    }
-                    clickCount++;
-                    if(clickCount % 2 == 1)
-                    {
-                        dda(x1,y1,x2,y2, (Graphics) e.getComponent().getGraphics());
-                    }
+                    opcoes(opcaoAlgoritmo, new Point(e.getX(), e.getY(), e.getComponent().getGraphics()));
                 }
 
                 @Override
@@ -304,33 +287,10 @@ public class PaintBrushFrame extends javax.swing.JFrame{
 
         g2d.draw(new Line2D.Double(x, y, x, y));
     }
-        public static void dda(int x1, int y1, int x2, int y2, Graphics g){//, int cor) {
-            System.out.println("Entrei no dda");
-            int deltaX = x2 - x1;
-            int deltaY = y2 - y1;
-
-            double x = (double) x1, y = (double) y1;
-
-            // colore o primeiro pixel da reta
-            //buffer.setRGB((int) Math.round(x), (int) Math.round(y), cor);
-            drawPoint((Graphics2D) g, (int) Math.round(x), (int) Math.round(y));
-
-
-            int passos = Math.max(Math.abs(deltaX), Math.abs(deltaY));
-            double xIncr = ((double) deltaX) / ((double) passos);
-            double yIncr = ((double) deltaY) / ((double) passos);
-
-            for (int k = 1; k <= passos; k++) {
-                x += xIncr;
-                y += yIncr;
-                drawPoint((Graphics2D) g, (int) Math.round(x), (int) Math.round(y));
-                //buffer.setRGB((int) Math.round(x), (int) Math.round(y), cor);
-            }
-   
-    }
     
-    public static void opcoes(int option, Graphics g, int x1, int y1, int x2, int y2)
+    public static void opcoes(int option, Point p)
     {
+        System.out.println("Opção de desenho: " + option);
         if(option == 0){
             System.out.println(" NADA ");
         }
@@ -339,7 +299,7 @@ public class PaintBrushFrame extends javax.swing.JFrame{
         }
         else if(option == 2){
             System.out.println(" Reta DDA ");
-            
+            reta.dda(p);
         }
         else if(option == 3){
             System.out.println(" Reta Bresenham ");
