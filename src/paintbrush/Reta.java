@@ -82,30 +82,4 @@ public class Reta {
         p1 = null;
         p2 = null;
     }
-
-    public void dda(int x1, int y1, int x2, int y2, Graphics g) {//, int cor) {
-        System.out.println("Entrei no dda");
-        int deltaX = x2 - x1;
-        int deltaY = y2 - y1;
-
-        double x = (double) x1, y = (double) y1;
-
-        // colore o primeiro pixel da reta
-        //buffer.setRGB((int) Math.round(x), (int) Math.round(y), cor);
-        drawPoint((Graphics2D) g, (int) Math.round(x), (int) Math.round(y));
-
-        int passos = Math.max(Math.abs(deltaX), Math.abs(deltaY));
-        double xIncr = ((double) deltaX) / ((double) passos);
-        double yIncr = ((double) deltaY) / ((double) passos);
-
-        for (int k = 1; k <= passos; k++) {
-            x += xIncr;
-            y += yIncr;
-            drawPoint((Graphics2D) g, (int) Math.round(x), (int) Math.round(y));
-            //buffer.setRGB((int) Math.round(x), (int) Math.round(y), cor);
-        }
-        this.p1 = null;
-        this.p2 = null;
-        
-    }
 }
