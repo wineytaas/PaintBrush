@@ -7,6 +7,7 @@ package paintbrush;
 
 import java.awt.BasicStroke;
 import java.awt.Color;
+import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -19,6 +20,7 @@ import java.awt.geom.Line2D;
  */
 public class PaintBrushFrame extends javax.swing.JFrame{
 
+    public static int opcaoAlgoritmo = 0;
     /**
      * Creates new form PaintBrushFrame
      */
@@ -39,9 +41,9 @@ public class PaintBrushFrame extends javax.swing.JFrame{
         jPanel1 = new javax.swing.JPanel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
-        jMenuItem2 = new javax.swing.JMenuItem();
+        PontosJMenuItem = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
+        retaDDAJMenuItem = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         jMenuItem4 = new javax.swing.JMenuItem();
@@ -72,20 +74,30 @@ public class PaintBrushFrame extends javax.swing.JFrame{
 
         jMenu1.setText("Ações");
 
-        jMenuItem2.setText("Rasterização de Pontos");
-        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem2ActionPerformed(evt);
+        PontosJMenuItem.setText("Rasterização de Pontos");
+        PontosJMenuItem.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                PontosJMenuItemMouseClicked(evt);
             }
         });
-        jMenu1.add(jMenuItem2);
+        PontosJMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                PontosJMenuItemActionPerformed(evt);
+            }
+        });
+        jMenu1.add(PontosJMenuItem);
 
         jMenuBar1.add(jMenu1);
 
         jMenu2.setText("Retas");
 
-        jMenuItem1.setText("Algoritmo DDA");
-        jMenu2.add(jMenuItem1);
+        retaDDAJMenuItem.setText("Algoritmo DDA");
+        retaDDAJMenuItem.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                retaDDAJMenuItemMouseClicked(evt);
+            }
+        });
+        jMenu2.add(retaDDAJMenuItem);
 
         jMenuItem3.setText("Algoritmo Bresenham");
         jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
@@ -167,9 +179,9 @@ public class PaintBrushFrame extends javax.swing.JFrame{
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+    private void PontosJMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PontosJMenuItemActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem2ActionPerformed
+    }//GEN-LAST:event_PontosJMenuItemActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
         // TODO add your handling code here:
@@ -186,6 +198,14 @@ public class PaintBrushFrame extends javax.swing.JFrame{
     private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem9ActionPerformed
+
+    private void PontosJMenuItemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PontosJMenuItemMouseClicked
+        opcaoAlgoritmo = 1;
+    }//GEN-LAST:event_PontosJMenuItemMouseClicked
+
+    private void retaDDAJMenuItemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_retaDDAJMenuItemMouseClicked
+        opcaoAlgoritmo = 2;
+    }//GEN-LAST:event_retaDDAJMenuItemMouseClicked
 
     /**
      * @param args the command line arguments
@@ -220,15 +240,30 @@ public class PaintBrushFrame extends javax.swing.JFrame{
                 PaintBrushFrame paintBrushFrame = new PaintBrushFrame();
                 paintBrushFrame.setVisible(true);
                 paintBrushFrame.jPanel1.addMouseListener(new MouseAdapter() {
-
+                    int clickCount = 0;
+                    int x1 = 0;
+                    int y1 = 0;
+                    int x2 = 0;
+                    int y2 = 0;
                 @Override
                 public void mousePressed(MouseEvent e) {
                     int x = e.getX();
                     int y = e.getY();
                     System.out.println(" X:" + x + " Y:" + y);
                     
-                    Graphics2D g2d = (Graphics2D) e.getComponent().getGraphics();
-                    drawPoint(g2d, x, y);
+                    if(clickCount % 2 == 0){
+                        x1 = x;
+                        y1 = y;
+                    }
+                    else{ 
+                        x2 = x;
+                        y2 = y;
+                    }
+                    clickCount++;
+                    if(clickCount % 2 == 1)
+                    {
+                        dda(x1,y1,x2,y2, (Graphics) e.getComponent().getGraphics());
+                    }
                 }
 
                 @Override
@@ -241,6 +276,7 @@ public class PaintBrushFrame extends javax.swing.JFrame{
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem PontosJMenuItem;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
@@ -248,10 +284,8 @@ public class PaintBrushFrame extends javax.swing.JFrame{
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenu jMenu6;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem10;
     private javax.swing.JMenuItem jMenuItem11;
-    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
@@ -260,6 +294,7 @@ public class PaintBrushFrame extends javax.swing.JFrame{
     private javax.swing.JMenuItem jMenuItem8;
     private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JMenuItem retaDDAJMenuItem;
     // End of variables declaration//GEN-END:variables
 
     public static void drawPoint(Graphics2D g2d, int x, int y)
@@ -268,5 +303,76 @@ public class PaintBrushFrame extends javax.swing.JFrame{
         g2d.setColor(Color.red);
 
         g2d.draw(new Line2D.Double(x, y, x, y));
+    }
+        public static void dda(int x1, int y1, int x2, int y2, Graphics g){//, int cor) {
+            System.out.println("Entrei no dda");
+            int deltaX = x2 - x1;
+            int deltaY = y2 - y1;
+
+            double x = (double) x1, y = (double) y1;
+
+            // colore o primeiro pixel da reta
+            //buffer.setRGB((int) Math.round(x), (int) Math.round(y), cor);
+            drawPoint((Graphics2D) g, (int) Math.round(x), (int) Math.round(y));
+
+
+            int passos = Math.max(Math.abs(deltaX), Math.abs(deltaY));
+            double xIncr = ((double) deltaX) / ((double) passos);
+            double yIncr = ((double) deltaY) / ((double) passos);
+
+            for (int k = 1; k <= passos; k++) {
+                x += xIncr;
+                y += yIncr;
+                drawPoint((Graphics2D) g, (int) Math.round(x), (int) Math.round(y));
+                //buffer.setRGB((int) Math.round(x), (int) Math.round(y), cor);
+            }
+   
+    }
+    
+    public static void opcoes(int option, Graphics g, int x1, int y1, int x2, int y2)
+    {
+        if(option == 0){
+            System.out.println(" NADA ");
+        }
+        else if(option == 1){
+            System.out.println(" Pontos ");
+        }
+        else if(option == 2){
+            System.out.println(" Reta DDA ");
+            
+        }
+        else if(option == 3){
+            System.out.println(" Reta Bresenham ");
+        }
+        else if(option == 4){
+            System.out.println(" Poligonos - retângulo ");
+        }
+        else if(option == 5){
+            System.out.println(" Circunferencia - Bresenham ");
+        }
+        else if(option == 6){
+            System.out.println(" - Transformações Geométricas 2D: translação");
+        }
+        else if(option == 7){
+            System.out.println(" - Transformações Geométricas 2D: rotação");
+        }
+        else if(option == 8){
+            System.out.println(" - Transformações Geométricas 2D: escala");
+        }
+        else if(option == 9){
+            System.out.println(" - Transformações Geométricas 2D: reflexões X");
+        }
+        else if(option == 10){
+            System.out.println(" - Transformações Geométricas 2D: reflexões Y");
+        }
+        else if(option == 11){
+            System.out.println(" - Transformações Geométricas 2D: reflexões XY");
+        }
+        else if(option == 12){
+            System.out.println("Recorte de Regiões: Algoritmo de Cohen-Sutherland");
+        }
+        else if(option == 13){
+            System.out.println("Recorte de Regiões: Algoritmo de Liang Barsky");
+        }
     }
 }

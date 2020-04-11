@@ -18,12 +18,13 @@
             <Property name="text" type="java.lang.String" value="A&#xe7;&#xf5;es"/>
           </Properties>
           <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem2">
+            <MenuItem class="javax.swing.JMenuItem" name="PontosJMenuItem">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Rasteriza&#xe7;&#xe3;o de Pontos"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem2ActionPerformed"/>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="PontosJMenuItemMouseClicked"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="PontosJMenuItemActionPerformed"/>
               </Events>
             </MenuItem>
           </SubComponents>
@@ -33,10 +34,13 @@
             <Property name="text" type="java.lang.String" value="Retas"/>
           </Properties>
           <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem1">
+            <MenuItem class="javax.swing.JMenuItem" name="retaDDAJMenuItem">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Algoritmo DDA"/>
               </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="retaDDAJMenuItemMouseClicked"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItem3">
               <Properties>
