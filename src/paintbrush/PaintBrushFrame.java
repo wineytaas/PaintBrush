@@ -220,12 +220,15 @@ public class PaintBrushFrame extends javax.swing.JFrame{
                 PaintBrushFrame paintBrushFrame = new PaintBrushFrame();
                 paintBrushFrame.setVisible(true);
                 paintBrushFrame.jPanel1.addMouseListener(new MouseAdapter() {
-                private Color background;
 
                 @Override
                 public void mousePressed(MouseEvent e) {
-                    System.out.println(" X:" + e.getX() + " Y:" + e.getY());
-                    //this.
+                    int x = e.getX();
+                    int y = e.getY();
+                    System.out.println(" X:" + x + " Y:" + y);
+                    
+                    Graphics2D g2d = (Graphics2D) e.getComponent().getGraphics();
+                    drawPoint(g2d, x, y);
                 }
 
                 @Override
@@ -259,9 +262,8 @@ public class PaintBrushFrame extends javax.swing.JFrame{
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 
-    public void drawPoint(int x, int y)
+    public static void drawPoint(Graphics2D g2d, int x, int y)
     {
-        Graphics2D g2d = (Graphics2D) this.getGraphics();
         g2d.setStroke(new BasicStroke(0.1f));
         g2d.setColor(Color.red);
 
