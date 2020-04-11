@@ -7,20 +7,23 @@ package paintbrush;
 
 import java.awt.BasicStroke;
 import java.awt.Color;
-import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.awt.geom.Line2D;
 
 /**
  *
- * @author wisne
+ * @author Disney
+ * @author Ernesto
+ * @author Raiana
  */
 public class PaintBrushFrame extends javax.swing.JFrame{
 
-    public static Reta reta = new Reta();
+    /**
+     *
+     */
+    private static final long serialVersionUID = 1L;
     public static int opcaoAlgoritmo = 0;
     
     /**
@@ -246,7 +249,7 @@ public class PaintBrushFrame extends javax.swing.JFrame{
                     
                 @Override
                 public void mousePressed(MouseEvent e) {
-                    opcoes(opcaoAlgoritmo, new Point(e.getX(), e.getY(), e.getComponent().getGraphics()));
+                    opcoes(new Point(e.getX(), e.getY(), e.getComponent().getGraphics()));
                 }
 
                 @Override
@@ -288,50 +291,50 @@ public class PaintBrushFrame extends javax.swing.JFrame{
         g2d.draw(new Line2D.Double(x, y, x, y));
     }
     
-    public static void opcoes(int option, Point p)
+    public static void opcoes(Point p)
     {
-        System.out.println("Opção de desenho: " + option);
-        if(option == 0){
+        System.out.println("Opção de desenho: " + opcaoAlgoritmo);
+        if(opcaoAlgoritmo == 0){
             System.out.println(" NADA ");
         }
-        else if(option == 1){
+        else if(opcaoAlgoritmo == 1){
             System.out.println(" Pontos ");
         }
-        else if(option == 2){
+        else if(opcaoAlgoritmo == 2){
             System.out.println(" Reta DDA ");
-            reta.dda(p);
+            Reta.dda(p);
         }
-        else if(option == 3){
+        else if(opcaoAlgoritmo == 3){
             System.out.println(" Reta Bresenham ");
         }
-        else if(option == 4){
+        else if(opcaoAlgoritmo == 4){
             System.out.println(" Poligonos - retângulo ");
         }
-        else if(option == 5){
+        else if(opcaoAlgoritmo == 5){
             System.out.println(" Circunferencia - Bresenham ");
         }
-        else if(option == 6){
+        else if(opcaoAlgoritmo == 6){
             System.out.println(" - Transformações Geométricas 2D: translação");
         }
-        else if(option == 7){
+        else if(opcaoAlgoritmo == 7){
             System.out.println(" - Transformações Geométricas 2D: rotação");
         }
-        else if(option == 8){
+        else if(opcaoAlgoritmo == 8){
             System.out.println(" - Transformações Geométricas 2D: escala");
         }
-        else if(option == 9){
+        else if(opcaoAlgoritmo == 9){
             System.out.println(" - Transformações Geométricas 2D: reflexões X");
         }
-        else if(option == 10){
+        else if(opcaoAlgoritmo == 10){
             System.out.println(" - Transformações Geométricas 2D: reflexões Y");
         }
-        else if(option == 11){
+        else if(opcaoAlgoritmo == 11){
             System.out.println(" - Transformações Geométricas 2D: reflexões XY");
         }
-        else if(option == 12){
+        else if(opcaoAlgoritmo == 12){
             System.out.println("Recorte de Regiões: Algoritmo de Cohen-Sutherland");
         }
-        else if(option == 13){
+        else if(opcaoAlgoritmo == 13){
             System.out.println("Recorte de Regiões: Algoritmo de Liang Barsky");
         }
     }

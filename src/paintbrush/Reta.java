@@ -5,31 +5,20 @@
  */
 package paintbrush;
 
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import static paintbrush.PaintBrushFrame.drawPoint;
 
 /**
  *
- * @author wisne
+ * @author Disney
+ * @author Ernesto
+ * @author Raiana
  */
 public class Reta {
 
-    private Point p1;
-    private Point p2;
+    private static Point p1;
+    private static Point p2;
     private static int countPoints = 0;
 
-    Reta() {
-        this(null, null);
-    }
-
-    Reta(Point p1, Point p2) {
-        this.p1 = p1;
-        this.p2 = p2;
-    }
-
-    public void dda(Point p) {
-        //System.out.println("X: " + p.x + " Y: " + p.y);
+    public static void dda(Point p) {
         if (countPoints % 2 == 1) {
             p1 = p;
         } else {
@@ -42,30 +31,26 @@ public class Reta {
         }
     }
 
-    public void dda(Point p1, Point p2) {
-        if (p1.x < p2.x) {
-            this.p1 = p1;
-            this.p2 = p2;
+    public static void dda(Point p10, Point p20) {
+        if (p10.x < p20.x) {
+            p1 = p10;
+            p2 = p20;
         } else {
-            this.p1 = p2;
-            this.p2 = p1;
+            p1 = p20;
+            p2 = p10;
         }
         dda();
-        //dda(this.p1.x, this.p1.y, this.p2.x, this.p2.y, this.p1.g2d);
     }
 
-    private void dda() {
+    private static void dda() {
         System.out.println("Entrei no dda");
         int deltaX = p2.x - p1.x;
         int deltaY = p2.y - p1.y;
 
         double x = (double) p1.x, y = (double) p1.y;
 
-        // colore o primeiro pixel da reta
-        //buffer.setRGB((int) Math.round(x), (int) Math.round(y), cor);
         Point pontoDesenhar = new Point((int) Math.round(x), (int) Math.round(y), p1.g2d);
         pontoDesenhar.draw();
-        //drawPoint((Graphics2D) g, (int) Math.round(x), (int) Math.round(y));
 
         int passos = Math.max(Math.abs(deltaX), Math.abs(deltaY));
         double xIncr = ((double) deltaX) / ((double) passos);
@@ -76,8 +61,6 @@ public class Reta {
             y += yIncr;
             pontoDesenhar = new Point((int) Math.round(x), (int) Math.round(y), p1.g2d);
             pontoDesenhar.draw();
-            //drawPoint((Graphics2D) g, (int) Math.round(x), (int) Math.round(y));
-            //buffer.setRGB((int) Math.round(x), (int) Math.round(y), cor);
         }
         p1 = null;
         p2 = null;
