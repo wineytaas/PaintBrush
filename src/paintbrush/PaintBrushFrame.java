@@ -5,14 +5,19 @@
  */
 package paintbrush;
 
+import java.awt.BasicStroke;
+import java.awt.Color;
+import java.awt.Graphics2D;
+import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.geom.Line2D;
 
 /**
  *
  * @author wisne
  */
-public class PaintBrushFrame extends javax.swing.JFrame implements MouseListener {
+public class PaintBrushFrame extends javax.swing.JFrame{
 
     /**
      * Creates new form PaintBrushFrame
@@ -212,7 +217,22 @@ public class PaintBrushFrame extends javax.swing.JFrame implements MouseListener
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new PaintBrushFrame().setVisible(true);
+                PaintBrushFrame paintBrushFrame = new PaintBrushFrame();
+                paintBrushFrame.setVisible(true);
+                paintBrushFrame.jPanel1.addMouseListener(new MouseAdapter() {
+                private Color background;
+
+                @Override
+                public void mousePressed(MouseEvent e) {
+                    System.out.println(" X:" + e.getX() + " Y:" + e.getY());
+                    //this.
+                }
+
+                @Override
+                public void mouseReleased(MouseEvent e) {
+                    //setBackground(background);background
+                }
+            });
             }
         });
     }
@@ -239,28 +259,12 @@ public class PaintBrushFrame extends javax.swing.JFrame implements MouseListener
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 
-    @Override
-    public void mouseClicked(MouseEvent me) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    public void drawPoint(int x, int y)
+    {
+        Graphics2D g2d = (Graphics2D) this.getGraphics();
+        g2d.setStroke(new BasicStroke(0.1f));
+        g2d.setColor(Color.red);
 
-    @Override
-    public void mousePressed(MouseEvent me) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void mouseReleased(MouseEvent me) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void mouseEntered(MouseEvent me) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void mouseExited(MouseEvent me) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        g2d.draw(new Line2D.Double(x, y, x, y));
     }
 }
