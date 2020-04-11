@@ -47,9 +47,9 @@ public class PaintBrushFrame extends javax.swing.JFrame{
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         PontosJMenuItem = new javax.swing.JMenuItem();
-        retasJMenu = new javax.swing.JMenu();
+        jMenu2 = new javax.swing.JMenu();
         retaDDAJMenuItem = new javax.swing.JMenuItem();
-        retaBresenhamJMenuItem = new javax.swing.JMenuItem();
+        jMenuItem3 = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
@@ -94,7 +94,7 @@ public class PaintBrushFrame extends javax.swing.JFrame{
 
         jMenuBar1.add(jMenu1);
 
-        retasJMenu.setText("Retas");
+        jMenu2.setText("Retas");
 
         retaDDAJMenuItem.setText("Algoritmo DDA");
         retaDDAJMenuItem.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -102,17 +102,17 @@ public class PaintBrushFrame extends javax.swing.JFrame{
                 retaDDAJMenuItemMousePressed(evt);
             }
         });
-        retasJMenu.add(retaDDAJMenuItem);
+        jMenu2.add(retaDDAJMenuItem);
 
-        retaBresenhamJMenuItem.setText("Algoritmo Bresenham");
-        retaBresenhamJMenuItem.addActionListener(new java.awt.event.ActionListener() {
+        jMenuItem3.setText("Algoritmo Bresenham");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                retaBresenhamJMenuItemMousePressed(evt);
+                retaBresenhamMenuItemMousePressed(evt);
             }
         });
-        retasJMenu.add(retaBresenhamJMenuItem);
+        jMenu2.add(jMenuItem3);
 
-        jMenuBar1.add(retasJMenu);
+        jMenuBar1.add(jMenu2);
 
         jMenu3.setText("Polígonos");
         jMenu3.setToolTipText("");
@@ -188,10 +188,10 @@ public class PaintBrushFrame extends javax.swing.JFrame{
         // TODO add your handling code here:
     }//GEN-LAST:event_PontosJMenuItemActionPerformed
 
-    private void retaBresenhamMenuItemMousePressed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_retaBresenhamJMenuItemActionPerformed
+    private void retaBresenhamMenuItemMousePressed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
        opcaoAlgoritmo = 3;
        System.out.println("Opção MousePressed: " + opcaoAlgoritmo);
-    }//GEN-LAST:event_retaBresenhamJMenuItemActionPerformed
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
         // TODO add your handling code here:
@@ -264,7 +264,7 @@ public class PaintBrushFrame extends javax.swing.JFrame{
 
     private javax.swing.JMenuItem PontosJMenuItem;
     private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu retasJMenu;
+    private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
@@ -272,7 +272,7 @@ public class PaintBrushFrame extends javax.swing.JFrame{
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem10;
     private javax.swing.JMenuItem jMenuItem11;
-    private javax.swing.JMenuItem retaBresenhamJMenuItem;
+    private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
