@@ -107,7 +107,7 @@ public class PaintBrushFrame extends javax.swing.JFrame{
         jMenuItem3.setText("Algoritmo Bresenham");
         jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem3ActionPerformed(evt);
+                retaBresenhamMenuItemMousePressed(evt);
             }
         });
         jMenu2.add(jMenuItem3);
@@ -188,8 +188,9 @@ public class PaintBrushFrame extends javax.swing.JFrame{
         // TODO add your handling code here:
     }//GEN-LAST:event_PontosJMenuItemActionPerformed
 
-    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
-        // TODO add your handling code here:
+    private void retaBresenhamMenuItemMousePressed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+       opcaoAlgoritmo = 3;
+       System.out.println("Opção MousePressed: " + opcaoAlgoritmo);
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
@@ -261,7 +262,6 @@ public class PaintBrushFrame extends javax.swing.JFrame{
         });
     }
 
-    // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem PontosJMenuItem;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
@@ -281,7 +281,6 @@ public class PaintBrushFrame extends javax.swing.JFrame{
     private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JMenuItem retaDDAJMenuItem;
-    // End of variables declaration//GEN-END:variables
 
     public static void drawPoint(Graphics2D g2d, int x, int y)
     {
@@ -306,6 +305,7 @@ public class PaintBrushFrame extends javax.swing.JFrame{
         }
         else if(opcaoAlgoritmo == 3){
             System.out.println(" Reta Bresenham ");
+            Reta.bresenham(p);
         }
         else if(opcaoAlgoritmo == 4){
             System.out.println(" Poligonos - retângulo ");
