@@ -89,16 +89,6 @@ public class PaintBrushFrame extends javax.swing.JFrame{
         jMenuAcoes.setText("Ações");
 
         jMenuItemPontos.setText("Rasterização de Pontos");
-        jMenuItemPontos.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jMenuItemPontosMouseClicked(evt);
-            }
-        });
-        jMenuItemPontos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItemPontosActionPerformed(evt);
-            }
-        });
         jMenuAcoes.add(jMenuItemPontos);
 
         jMenuBar1.add(jMenuAcoes);
@@ -114,8 +104,8 @@ public class PaintBrushFrame extends javax.swing.JFrame{
         jMenuRetas.add(jMenuItemRetaDDA);
 
         jMenuItemRetaBresenham.setText("Algoritmo Bresenham");
-        jMenuItemRetaBresenham.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jMenuItemRetaBresenham.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
                 retaBresenhamMenuItemMousePressed(evt);
             }
         });
@@ -127,8 +117,8 @@ public class PaintBrushFrame extends javax.swing.JFrame{
         jMenuPoligonos.setToolTipText("");
 
         jMenuItemPoligonosRetangulo.setText("Retângulo");
-        jMenuItemPoligonosRetangulo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jMenuItemPoligonosRetangulo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
                 retanguloMenuItemMousePressed(evt);
             }
         });
@@ -204,35 +194,15 @@ public class PaintBrushFrame extends javax.swing.JFrame{
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jMenuItemPontosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemPontosActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItemPontosActionPerformed
-
-    private void retaBresenhamMenuItemMousePressed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_retaBresenhamMenuItemMousePressed
+    private void retaBresenhamMenuItemMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_retaBresenhamMenuItemMousePressed
        opcaoAlgoritmo = 3;
        System.out.println("Opção MousePressed: " + opcaoAlgoritmo);
     }//GEN-LAST:event_retaBresenhamMenuItemMousePressed
 
-    private void retanguloMenuItemMousePressed(java.awt.event.ActionEvent evt){//GEN-FIRST:event_retanguloMenuItemMousePressed
+    private void retanguloMenuItemMousePressed(java.awt.event.MouseEvent evt){//GEN-FIRST:event_retanguloMenuItemMousePressed
         opcaoAlgoritmo = 4;
         System.out.println("Opção MousePressed: " + opcaoAlgoritmo);
     }//GEN-LAST:event_retanguloMenuItemMousePressed
-
-    private void jMenuItemTransformacoesTraslacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemTransformacoesTraslacaoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItemTransformacoesTraslacaoActionPerformed
-
-    private void jMenuItemTransformacoesRotacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemTransformacoesRotacaoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItemTransformacoesRotacaoActionPerformed
-
-    private void jMenuItemTransformacoesReflexaoXActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemTransformacoesReflexaoXActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItemTransformacoesReflexaoXActionPerformed
-
-    private void jMenuItemPontosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuItemPontosMouseClicked
-        opcaoAlgoritmo = 1;
-    }//GEN-LAST:event_jMenuItemPontosMouseClicked
 
     private void jMenuItemRetaDDAMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuItemRetaDDAMousePressed
         opcaoAlgoritmo = 2;
