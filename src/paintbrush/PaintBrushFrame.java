@@ -25,7 +25,9 @@ public class PaintBrushFrame extends javax.swing.JFrame{
      */
     private static final long serialVersionUID = 1L;
     public static int opcaoAlgoritmo = 0;
-    
+    public Reta reta;
+    public Retangulo retangulo;
+
     /**
      * Creates new form PaintBrushFrame
      */
@@ -41,6 +43,9 @@ public class PaintBrushFrame extends javax.swing.JFrame{
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+
+        retangulo = new Retangulo();
+        reta = new Reta(null, null);
 
         jMenu5 = new javax.swing.JMenu();
         jPanel1 = new javax.swing.JPanel();
@@ -118,6 +123,12 @@ public class PaintBrushFrame extends javax.swing.JFrame{
         jMenu3.setToolTipText("");
 
         jMenuItem4.setText("Retângulo");
+        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                retanguloMenuItemMousePressed(evt);
+            }
+        });
+
         jMenu3.add(jMenuItem4);
 
         jMenuBar1.add(jMenu3);
@@ -193,6 +204,11 @@ public class PaintBrushFrame extends javax.swing.JFrame{
        System.out.println("Opção MousePressed: " + opcaoAlgoritmo);
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
+    private void retanguloMenuItemMousePressed(java.awt.event.ActionEvent evt){
+        opcaoAlgoritmo = 4;
+        System.out.println("Opção MousePressed: " + opcaoAlgoritmo);
+    }
+
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem6ActionPerformed
@@ -250,7 +266,7 @@ public class PaintBrushFrame extends javax.swing.JFrame{
                     
                 @Override
                 public void mousePressed(MouseEvent e) {
-                    opcoes(new Point(e.getX(), e.getY(), e.getComponent().getGraphics()));
+                    paintBrushFrame.opcoes(new Point(e.getX(), e.getY(), e.getComponent().getGraphics()));
                 }
 
                 @Override
@@ -290,7 +306,7 @@ public class PaintBrushFrame extends javax.swing.JFrame{
         g2d.draw(new Line2D.Double(x, y, x, y));
     }
     
-    public static void opcoes(Point p)
+    public void opcoes(Point p)
     {
         System.out.println("Opção de desenho: " + opcaoAlgoritmo);
         if(opcaoAlgoritmo == 0){
@@ -301,14 +317,15 @@ public class PaintBrushFrame extends javax.swing.JFrame{
         }
         else if(opcaoAlgoritmo == 2){
             System.out.println(" Reta DDA ");
-            Reta.dda(p);
+            reta.dda(p);
         }
         else if(opcaoAlgoritmo == 3){
             System.out.println(" Reta Bresenham ");
-            Reta.bresenham(p);
+            reta.bresenham(p);
         }
         else if(opcaoAlgoritmo == 4){
             System.out.println(" Poligonos - retângulo ");
+            retangulo.inserir(p);
         }
         else if(opcaoAlgoritmo == 5){
             System.out.println(" Circunferencia - Bresenham ");

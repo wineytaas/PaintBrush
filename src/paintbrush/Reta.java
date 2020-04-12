@@ -14,42 +14,48 @@ package paintbrush;
  */
 public class Reta {
 
-    private static Point p1;
-    private static Point p2;
+    private Point p1;
+    private Point p2;
     private static int countPoints = 0;
 
-    public static boolean inserirPonto(Point p) {
-        if (countPoints % 2 == 1) {
-            p1 = p;
+    Reta(Point p1, Point p2){
+        this.p1 = p1;
+        this.p2 = p2;
+    }
+
+    public boolean inserirPonto(Point p) {
+        if (countPoints == 0) {
+            this.p1 = p;
         } else {
-            p2 = p;
+            this.p2 = p;
         }
+
         countPoints++;
 
         return p1 != null && p2 != null;
     }
 
-    public static void dda(Point p){
+    public void dda(Point p){
         if(inserirPonto(p)){
             dda(p1, p2);
         }
     }
 
-    public static void dda(Point p10, Point p20) {
+    public void dda(Point p10, Point p20) {
         if (p10.x < p20.x) {
-            p1 = p10;
-            p2 = p20;
+            this.p1 = p10;
+            this.p2 = p20;
         } else {
-            p1 = p20;
-            p2 = p10;
+            this.p1 = p20;
+            this.p2 = p10;
         }
         dda();
     }
 
-    private static void dda() {
+    private void dda() {
         System.out.println("Entrei no dda");
-        int deltaX = p2.x - p1.x;
-        int deltaY = p2.y - p1.y;
+        int deltaX = this.p2.x - this.p1.x;
+        int deltaY = this.p2.y - this.p1.y;
 
         double x = (double) p1.x, y = (double) p1.y;
 
@@ -66,21 +72,21 @@ public class Reta {
             pontoDesenhar = new Point((int) Math.round(x), (int) Math.round(y), p1.g2d);
             pontoDesenhar.draw();
         }
-        p1 = null;
-        p2 = null;
+
+        p1 = p2 = null;
+        countPoints = 0;
     }
 
-    public static void bresenham(Point p){
+    public void bresenham(Point p){
         if(inserirPonto(p)){
-            bresenham(p1, p2);
+            bresenham();
         }
     }
 
-    public static void bresenham(Point p1, Point p2){
-        bresenham(p1.x, p1.y, p2.x, p2.y);
-    }
+    public void bresenham(){
 
-    private static void bresenham (int x1, int y1, int x2, int y2) {
+        int x1 = p1.x, y1 = p1.y , x2 = p2.x, y2 = p2.y;
+
         System.out.println("Entrei no bresenham");
         int deltaX = x2 - x1;
         int deltaY = y2 - y1;
@@ -147,7 +153,7 @@ public class Reta {
                 pontoDesenhar.draw();
             }// fim for
         }// fim else
-        p1 = null;
-        p2 = null;
+        p1 = p2 = null;
+        countPoints = 0;
     }
   }
