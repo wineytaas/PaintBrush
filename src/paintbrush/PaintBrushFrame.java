@@ -12,6 +12,8 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.geom.Line2D;
 
+import javafx.scene.shape.Circle;
+
 /**
  *
  * @author Disney
@@ -27,6 +29,7 @@ public class PaintBrushFrame extends javax.swing.JFrame{
     public static int opcaoAlgoritmo = 0;
     public Reta reta;
     public Retangulo retangulo;
+    public Circunferencia circunferencia;
 
     /**
      * Creates new form PaintBrushFrame
@@ -46,6 +49,7 @@ public class PaintBrushFrame extends javax.swing.JFrame{
 
         retangulo = new Retangulo();
         reta = new Reta(null, null);
+        circunferencia = new Circunferencia();
 
         jMenu5 = new javax.swing.JMenu();
         jPanel1 = new javax.swing.JPanel();
@@ -136,6 +140,11 @@ public class PaintBrushFrame extends javax.swing.JFrame{
         jMenu4.setText("Circunferência");
 
         jMenuItem5.setText("Algoritmo de Bresenham");
+        jMenuItem5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jMenuItem5MousePressed(evt);
+            }
+        });
         jMenu4.add(jMenuItem5);
 
         jMenuBar1.add(jMenu4);
@@ -229,6 +238,11 @@ public class PaintBrushFrame extends javax.swing.JFrame{
         opcaoAlgoritmo = 2;
         System.out.println("Opção MousePressed: " + opcaoAlgoritmo);
     }//GEN-LAST:event_retaDDAJMenuItemMousePressed
+
+    private void jMenuItem5MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuItem5MousePressed
+        opcaoAlgoritmo = 5;
+        System.out.println("Opção MousePressed: " + opcaoAlgoritmo);
+    }//GEN-LAST:event_jMenuItem5MousePressed
 
     /**
      * @param args the command line arguments
@@ -329,6 +343,7 @@ public class PaintBrushFrame extends javax.swing.JFrame{
         }
         else if(opcaoAlgoritmo == 5){
             System.out.println(" Circunferencia - Bresenham ");
+            circunferencia.bresenhams(p);
         }
         else if(opcaoAlgoritmo == 6){
             System.out.println(" - Transformações Geométricas 2D: translação");
