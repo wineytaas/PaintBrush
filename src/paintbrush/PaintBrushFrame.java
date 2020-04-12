@@ -54,22 +54,22 @@ public class PaintBrushFrame extends javax.swing.JFrame{
         jMenu5 = new javax.swing.JMenu();
         jPanel1 = new javax.swing.JPanel();
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        PontosJMenuItem = new javax.swing.JMenuItem();
-        jMenu2 = new javax.swing.JMenu();
-        retaDDAJMenuItem = new javax.swing.JMenuItem();
-        jMenuItem3 = new javax.swing.JMenuItem();
-        jMenu3 = new javax.swing.JMenu();
-        jMenuItem4 = new javax.swing.JMenuItem();
-        jMenu4 = new javax.swing.JMenu();
-        jMenuItem5 = new javax.swing.JMenuItem();
-        jMenu6 = new javax.swing.JMenu();
-        jMenuItem6 = new javax.swing.JMenuItem();
-        jMenuItem7 = new javax.swing.JMenuItem();
-        jMenuItem8 = new javax.swing.JMenuItem();
-        jMenuItem9 = new javax.swing.JMenuItem();
-        jMenuItem10 = new javax.swing.JMenuItem();
-        jMenuItem11 = new javax.swing.JMenuItem();
+        jMenuAcoes = new javax.swing.JMenu();
+        jMenuItemPontos = new javax.swing.JMenuItem();
+        jMenuRetas = new javax.swing.JMenu();
+        jMenuItemRetaDDA = new javax.swing.JMenuItem();
+        jMenuItemRetaBresenham = new javax.swing.JMenuItem();
+        jMenuPoligonos = new javax.swing.JMenu();
+        jMenuItemPoligonosRetangulo = new javax.swing.JMenuItem();
+        jMenuCircunferencia = new javax.swing.JMenu();
+        jMenuItemCircunferenciaBresenham = new javax.swing.JMenuItem();
+        jMenuTransformacoes = new javax.swing.JMenu();
+        jMenuItemTransformacoesTraslacao = new javax.swing.JMenuItem();
+        jMenuItemTransformacoesRotacao = new javax.swing.JMenuItem();
+        jMenuItemTransformacoesEscala = new javax.swing.JMenuItem();
+        jMenuItemTransformacoesReflexaoX = new javax.swing.JMenuItem();
+        jMenuItemTransformacoesReflexaoY = new javax.swing.JMenuItem();
+        jMenuItemTransformacoesReflexaoXY = new javax.swing.JMenuItem();
 
         jMenu5.setText("jMenu5");
 
@@ -86,105 +86,105 @@ public class PaintBrushFrame extends javax.swing.JFrame{
             .addGap(0, 268, Short.MAX_VALUE)
         );
 
-        jMenu1.setText("Ações");
+        jMenuAcoes.setText("Ações");
 
-        PontosJMenuItem.setText("Rasterização de Pontos");
-        PontosJMenuItem.addMouseListener(new java.awt.event.MouseAdapter() {
+        jMenuItemPontos.setText("Rasterização de Pontos");
+        jMenuItemPontos.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                PontosJMenuItemMouseClicked(evt);
+                jMenuItemPontosMouseClicked(evt);
             }
         });
-        PontosJMenuItem.addActionListener(new java.awt.event.ActionListener() {
+        jMenuItemPontos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                PontosJMenuItemActionPerformed(evt);
+                jMenuItemPontosActionPerformed(evt);
             }
         });
-        jMenu1.add(PontosJMenuItem);
+        jMenuAcoes.add(jMenuItemPontos);
 
-        jMenuBar1.add(jMenu1);
+        jMenuBar1.add(jMenuAcoes);
 
-        jMenu2.setText("Retas");
+        jMenuRetas.setText("Retas");
 
-        retaDDAJMenuItem.setText("Algoritmo DDA");
-        retaDDAJMenuItem.addMouseListener(new java.awt.event.MouseAdapter() {
+        jMenuItemRetaDDA.setText("Algoritmo DDA");
+        jMenuItemRetaDDA.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                retaDDAJMenuItemMousePressed(evt);
+                jMenuItemRetaDDAMousePressed(evt);
             }
         });
-        jMenu2.add(retaDDAJMenuItem);
+        jMenuRetas.add(jMenuItemRetaDDA);
 
-        jMenuItem3.setText("Algoritmo Bresenham");
-        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+        jMenuItemRetaBresenham.setText("Algoritmo Bresenham");
+        jMenuItemRetaBresenham.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 retaBresenhamMenuItemMousePressed(evt);
             }
         });
-        jMenu2.add(jMenuItem3);
+        jMenuRetas.add(jMenuItemRetaBresenham);
 
-        jMenuBar1.add(jMenu2);
+        jMenuBar1.add(jMenuRetas);
 
-        jMenu3.setText("Polígonos");
-        jMenu3.setToolTipText("");
+        jMenuPoligonos.setText("Polígonos");
+        jMenuPoligonos.setToolTipText("");
 
-        jMenuItem4.setText("Retângulo");
-        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+        jMenuItemPoligonosRetangulo.setText("Retângulo");
+        jMenuItemPoligonosRetangulo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 retanguloMenuItemMousePressed(evt);
             }
         });
 
-        jMenu3.add(jMenuItem4);
+        jMenuPoligonos.add(jMenuItemPoligonosRetangulo);
 
-        jMenuBar1.add(jMenu3);
+        jMenuBar1.add(jMenuPoligonos);
 
-        jMenu4.setText("Circunferência");
+        jMenuCircunferencia.setText("Circunferência");
 
-        jMenuItem5.setText("Algoritmo de Bresenham");
-        jMenuItem5.addMouseListener(new java.awt.event.MouseAdapter() {
+        jMenuItemCircunferenciaBresenham.setText("Algoritmo de Bresenham");
+        jMenuItemCircunferenciaBresenham.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                jMenuItem5MousePressed(evt);
+                jMenuItemCircunferenciaBresenhamMousePressed(evt);
             }
         });
-        jMenu4.add(jMenuItem5);
+        jMenuCircunferencia.add(jMenuItemCircunferenciaBresenham);
 
-        jMenuBar1.add(jMenu4);
+        jMenuBar1.add(jMenuCircunferencia);
 
-        jMenu6.setText("Transformações");
+        jMenuTransformacoes.setText("Transformações");
 
-        jMenuItem6.setText("Translação");
-        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
+        jMenuItemTransformacoesTraslacao.setText("Translação");
+        jMenuItemTransformacoesTraslacao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem6ActionPerformed(evt);
+                jMenuItemTransformacoesTraslacaoActionPerformed(evt);
             }
         });
-        jMenu6.add(jMenuItem6);
+        jMenuTransformacoes.add(jMenuItemTransformacoesTraslacao);
 
-        jMenuItem7.setText("Rotação");
-        jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
+        jMenuItemTransformacoesRotacao.setText("Rotação");
+        jMenuItemTransformacoesRotacao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem7ActionPerformed(evt);
+                jMenuItemTransformacoesRotacaoActionPerformed(evt);
             }
         });
-        jMenu6.add(jMenuItem7);
+        jMenuTransformacoes.add(jMenuItemTransformacoesRotacao);
 
-        jMenuItem8.setText("Escala");
-        jMenu6.add(jMenuItem8);
+        jMenuItemTransformacoesEscala.setText("Escala");
+        jMenuTransformacoes.add(jMenuItemTransformacoesEscala);
 
-        jMenuItem9.setText("Reflexão X");
-        jMenuItem9.addActionListener(new java.awt.event.ActionListener() {
+        jMenuItemTransformacoesReflexaoX.setText("Reflexão X");
+        jMenuItemTransformacoesReflexaoX.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem9ActionPerformed(evt);
+                jMenuItemTransformacoesReflexaoXActionPerformed(evt);
             }
         });
-        jMenu6.add(jMenuItem9);
+        jMenuTransformacoes.add(jMenuItemTransformacoesReflexaoX);
 
-        jMenuItem10.setText("Reflexão Y");
-        jMenu6.add(jMenuItem10);
+        jMenuItemTransformacoesReflexaoY.setText("Reflexão Y");
+        jMenuTransformacoes.add(jMenuItemTransformacoesReflexaoY);
 
-        jMenuItem11.setText("Reflexão XY");
-        jMenu6.add(jMenuItem11);
+        jMenuItemTransformacoesReflexaoXY.setText("Reflexão XY");
+        jMenuTransformacoes.add(jMenuItemTransformacoesReflexaoXY);
 
-        jMenuBar1.add(jMenu6);
+        jMenuBar1.add(jMenuTransformacoes);
 
         setJMenuBar(jMenuBar1);
 
@@ -204,45 +204,45 @@ public class PaintBrushFrame extends javax.swing.JFrame{
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void PontosJMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PontosJMenuItemActionPerformed
+    private void jMenuItemPontosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemPontosActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_PontosJMenuItemActionPerformed
+    }//GEN-LAST:event_jMenuItemPontosActionPerformed
 
-    private void retaBresenhamMenuItemMousePressed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+    private void retaBresenhamMenuItemMousePressed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_retaBresenhamMenuItemMousePressed
        opcaoAlgoritmo = 3;
        System.out.println("Opção MousePressed: " + opcaoAlgoritmo);
-    }//GEN-LAST:event_jMenuItem3ActionPerformed
+    }//GEN-LAST:event_retaBresenhamMenuItemMousePressed
 
-    private void retanguloMenuItemMousePressed(java.awt.event.ActionEvent evt){
+    private void retanguloMenuItemMousePressed(java.awt.event.ActionEvent evt){//GEN-FIRST:event_retanguloMenuItemMousePressed
         opcaoAlgoritmo = 4;
         System.out.println("Opção MousePressed: " + opcaoAlgoritmo);
-    }
+    }//GEN-LAST:event_retanguloMenuItemMousePressed
 
-    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
+    private void jMenuItemTransformacoesTraslacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemTransformacoesTraslacaoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem6ActionPerformed
+    }//GEN-LAST:event_jMenuItemTransformacoesTraslacaoActionPerformed
 
-    private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
+    private void jMenuItemTransformacoesRotacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemTransformacoesRotacaoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem7ActionPerformed
+    }//GEN-LAST:event_jMenuItemTransformacoesRotacaoActionPerformed
 
-    private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
+    private void jMenuItemTransformacoesReflexaoXActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemTransformacoesReflexaoXActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem9ActionPerformed
+    }//GEN-LAST:event_jMenuItemTransformacoesReflexaoXActionPerformed
 
-    private void PontosJMenuItemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PontosJMenuItemMouseClicked
+    private void jMenuItemPontosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuItemPontosMouseClicked
         opcaoAlgoritmo = 1;
-    }//GEN-LAST:event_PontosJMenuItemMouseClicked
+    }//GEN-LAST:event_jMenuItemPontosMouseClicked
 
-    private void retaDDAJMenuItemMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_retaDDAJMenuItemMousePressed
+    private void jMenuItemRetaDDAMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuItemRetaDDAMousePressed
         opcaoAlgoritmo = 2;
         System.out.println("Opção MousePressed: " + opcaoAlgoritmo);
-    }//GEN-LAST:event_retaDDAJMenuItemMousePressed
+    }//GEN-LAST:event_jMenuItemRetaDDAMousePressed
 
-    private void jMenuItem5MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuItem5MousePressed
+    private void jMenuItemCircunferenciaBresenhamMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuItemCircunferenciaBresenhamMousePressed
         opcaoAlgoritmo = 5;
         System.out.println("Opção MousePressed: " + opcaoAlgoritmo);
-    }//GEN-LAST:event_jMenuItem5MousePressed
+    }//GEN-LAST:event_jMenuItemCircunferenciaBresenhamMousePressed
 
     /**
      * @param args the command line arguments
@@ -292,25 +292,27 @@ public class PaintBrushFrame extends javax.swing.JFrame{
         });
     }
 
-    private javax.swing.JMenuItem PontosJMenuItem;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenu jMenu3;
-    private javax.swing.JMenu jMenu4;
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem jMenuItemPontos;
+    private javax.swing.JMenu jMenuAcoes;
+    private javax.swing.JMenu jMenuRetas;
+    private javax.swing.JMenu jMenuPoligonos;
+    private javax.swing.JMenu jMenuCircunferencia;
     private javax.swing.JMenu jMenu5;
-    private javax.swing.JMenu jMenu6;
+    private javax.swing.JMenu jMenuTransformacoes;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem10;
-    private javax.swing.JMenuItem jMenuItem11;
-    private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem4;
-    private javax.swing.JMenuItem jMenuItem5;
-    private javax.swing.JMenuItem jMenuItem6;
-    private javax.swing.JMenuItem jMenuItem7;
-    private javax.swing.JMenuItem jMenuItem8;
-    private javax.swing.JMenuItem jMenuItem9;
+    private javax.swing.JMenuItem jMenuItemTransformacoesReflexaoY;
+    private javax.swing.JMenuItem jMenuItemTransformacoesReflexaoXY;
+    private javax.swing.JMenuItem jMenuItemRetaBresenham;
+    private javax.swing.JMenuItem jMenuItemPoligonosRetangulo;
+    private javax.swing.JMenuItem jMenuItemCircunferenciaBresenham;
+    private javax.swing.JMenuItem jMenuItemTransformacoesTraslacao;
+    private javax.swing.JMenuItem jMenuItemTransformacoesRotacao;
+    private javax.swing.JMenuItem jMenuItemTransformacoesEscala;
+    private javax.swing.JMenuItem jMenuItemTransformacoesReflexaoX;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JMenuItem retaDDAJMenuItem;
+    private javax.swing.JMenuItem jMenuItemRetaDDA;
+    // End of variables declaration//GEN-END:variables
 
     public static void drawPoint(Graphics2D g2d, int x, int y)
     {
