@@ -142,30 +142,15 @@ public class PaintBrushFrame extends javax.swing.JFrame{
         jMenuTransformacoes.setText("Transformações");
 
         jMenuItemTransformacoesTraslacao.setText("Translação");
-        jMenuItemTransformacoesTraslacao.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItemTransformacoesTraslacaoActionPerformed(evt);
-            }
-        });
         jMenuTransformacoes.add(jMenuItemTransformacoesTraslacao);
 
         jMenuItemTransformacoesRotacao.setText("Rotação");
-        jMenuItemTransformacoesRotacao.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItemTransformacoesRotacaoActionPerformed(evt);
-            }
-        });
         jMenuTransformacoes.add(jMenuItemTransformacoesRotacao);
 
         jMenuItemTransformacoesEscala.setText("Escala");
         jMenuTransformacoes.add(jMenuItemTransformacoesEscala);
 
         jMenuItemTransformacoesReflexaoX.setText("Reflexão X");
-        jMenuItemTransformacoesReflexaoX.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItemTransformacoesReflexaoXActionPerformed(evt);
-            }
-        });
         jMenuTransformacoes.add(jMenuItemTransformacoesReflexaoX);
 
         jMenuItemTransformacoesReflexaoY.setText("Reflexão Y");
