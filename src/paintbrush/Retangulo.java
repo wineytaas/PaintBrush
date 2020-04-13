@@ -8,13 +8,13 @@ public class Retangulo {
     private static int countPoints = 0;
 
     public boolean inserirPonto(Point p) {
-        if(countPoints == 0){
+        if(countPoints % 4 == 0){
             p1 = p;
         }
-        else if(countPoints == 1){
+        else if(countPoints % 4 == 1){
             p2 = p;
         }
-        else if(countPoints == 2){
+        else if(countPoints % 4 == 2){
             p3 = p;
         }
         else{
@@ -25,8 +25,9 @@ public class Retangulo {
         return p1 != null && p2 != null && p3 != null && p4 != null;
     }
 
-    public void inserir(Point p){
-        if(inserirPonto(p)){
+    public boolean inserir(Point p){
+        boolean plotar = inserirPonto(p);
+        if(plotar){
             Reta r1  = new Reta(p1, p2);
             Reta r2 = new Reta(p2, p3);
             Reta r3 = new Reta(p3, p4);
@@ -37,8 +38,9 @@ public class Retangulo {
             r3.bresenham();
             r4.bresenham();
 
-            p1 = p2 = p3 = p4 = null;
+            //p1 = p2 = p3 = p4 = null;
             countPoints = 0;
         }
+        return plotar;
     }
 }

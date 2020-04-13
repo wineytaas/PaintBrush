@@ -11,8 +11,8 @@ import java.awt.Graphics2D;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.geom.Line2D;
-
-import javafx.scene.shape.Circle;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -27,8 +27,11 @@ public class PaintBrushFrame extends javax.swing.JFrame{
      */
     private static final long serialVersionUID = 1L;
     public static int opcaoAlgoritmo = 0;
+    public List<Reta> retaList = new ArrayList<Reta>();
     public Reta reta;
+    public List<Retangulo> retanguloList = new ArrayList<Retangulo>();
     public Retangulo retangulo;
+    public List<Circunferencia> circunferenciaList = new ArrayList<Circunferencia>();
     public Circunferencia circunferencia;
 
     /**
@@ -288,19 +291,40 @@ public class PaintBrushFrame extends javax.swing.JFrame{
         }
         else if(opcaoAlgoritmo == 2){
             System.out.println(" Reta DDA ");
-            reta.dda(p);
+            if(reta.dda(p))
+            {
+                retaList.add(reta);
+                reta = new Reta();
+                System.out.println(" Reta count: " + retaList.size() );
+            }
         }
         else if(opcaoAlgoritmo == 3){
             System.out.println(" Reta Bresenham ");
-            reta.bresenham(p);
+            
+            if(reta.bresenham(p))
+            {
+                retaList.add(reta);
+                reta = new Reta();
+                System.out.println(" Reta count: " + retaList.size() );
+            }
         }
         else if(opcaoAlgoritmo == 4){
             System.out.println(" Poligonos - retângulo ");
-            retangulo.inserir(p);
+            if(retangulo.inserir(p))
+            {
+                retanguloList.add(retangulo);
+                System.out.println(" Retangulos count: " + retanguloList.size());
+                retangulo = new Retangulo();
+            }
         }
         else if(opcaoAlgoritmo == 5){
             System.out.println(" Circunferencia - Bresenham ");
-            circunferencia.bresenhams(p);
+            if(circunferencia.bresenhams(p))
+            {
+                circunferenciaList.add(circunferencia);
+                System.out.println(" Circunferencias count: " + circunferenciaList.size() );
+                circunferencia = new Circunferencia();
+            }
         }
         else if(opcaoAlgoritmo == 6){
             System.out.println(" - Transformações Geométricas 2D: translação");

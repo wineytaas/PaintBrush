@@ -13,24 +13,28 @@ public class Circunferencia {
     private static Point centro = null;
     private static Point raio = null;
     
-    private static int count = 0;
+    private static int countPoints = 0;
     
-    public void bresenhams(Point p)
-    {
-        if(count % 2 == 0)
-        {
+    public boolean inserirPonto(Point p) {
+        if(countPoints  % 2 == 0){
             centro = p;
         }
-        else
-        {
+        else if(countPoints % 2 == 1){
             raio = p;
         }
-        count++;
-        
-        if(centro != null && raio != null)
+        countPoints++;
+
+        return centro != null && raio != null;
+    }
+    
+    public boolean bresenhams(Point p)
+    {
+        boolean plotar = inserirPonto(p);
+        if(plotar)
         {
             bresenhams();
         }
+        return plotar;
     }
     
     private void bresenhams()

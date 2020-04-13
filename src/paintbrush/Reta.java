@@ -18,6 +18,10 @@ public class Reta {
     private Point p2;
     private static int countPoints = 0;
 
+    Reta(){
+        this(null, null);
+    }
+    
     Reta(Point p1, Point p2){
         this.p1 = p1;
         this.p2 = p2;
@@ -35,10 +39,12 @@ public class Reta {
         return p1 != null && p2 != null;
     }
 
-    public void dda(Point p){
-        if(inserirPonto(p)){
+    public boolean dda(Point p){
+        boolean inserir = inserirPonto(p);
+        if(inserir){
             dda(p1, p2);
         }
+        return inserir;
     }
 
     public void dda(Point p10, Point p20) {
@@ -73,14 +79,17 @@ public class Reta {
             pontoDesenhar.draw();
         }
 
-        p1 = p2 = null;
+        //p1 = p2 = null;
         countPoints = 0;
     }
 
-    public void bresenham(Point p){
-        if(inserirPonto(p)){
+    public boolean bresenham(Point p){
+        boolean inserir = inserirPonto(p);
+        if(inserir){
             bresenham();
         }
+        
+        return inserir;
     }
 
     public void bresenham(){
@@ -153,7 +162,7 @@ public class Reta {
                 pontoDesenhar.draw();
             }// fim for
         }// fim else
-        p1 = p2 = null;
+        //p1 = p2 = null;
         countPoints = 0;
     }
   }
