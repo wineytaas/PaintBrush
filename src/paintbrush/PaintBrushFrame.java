@@ -174,12 +174,27 @@ public class PaintBrushFrame extends javax.swing.JFrame{
         jMenuTransformacoes.add(jMenuItemTransformacoesEscala);
 
         jMenuItemTransformacoesReflexaoX.setText("Reflexão X");
+        jMenuItemTransformacoesReflexaoX.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(final java.awt.event.MouseEvent evt) {
+                jMenuItemTransformacoesReflexaoXMousePressed(evt);
+            }
+        });
         jMenuTransformacoes.add(jMenuItemTransformacoesReflexaoX);
 
         jMenuItemTransformacoesReflexaoY.setText("Reflexão Y");
+        jMenuItemTransformacoesReflexaoY.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(final java.awt.event.MouseEvent evt) {
+                jMenuItemTransformacoesReflexaoYMousePressed(evt);
+            }
+        });
         jMenuTransformacoes.add(jMenuItemTransformacoesReflexaoY);
 
         jMenuItemTransformacoesReflexaoXY.setText("Reflexão XY");
+        jMenuItemTransformacoesReflexaoXY.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(final java.awt.event.MouseEvent evt) {
+                jMenuItemTransformacoesReflexaoXYMousePressed(evt);
+            }
+        });
         jMenuTransformacoes.add(jMenuItemTransformacoesReflexaoXY);
 
         jMenuBar1.add(jMenuTransformacoes);
@@ -251,8 +266,7 @@ public class PaintBrushFrame extends javax.swing.JFrame{
         opcaoAlgoritmo = 7;
         System.out.println("Opção MousePressed: " + opcaoAlgoritmo);
         int grau = Integer.parseInt(JOptionPane.showInputDialog(null, "Digite o grau: "));
-        // clear((Graphics2D) evt.getComponent().getGraphics(), evt.getComponent().getBackground());
-        // clear((Graphics2D) jPanel1.getGraphics(), Color.WHITE);
+        
         for (Reta r : retaList) {
             r.rotacionar(grau);
         }
@@ -289,6 +303,36 @@ public class PaintBrushFrame extends javax.swing.JFrame{
         }
 
     }// GEN-LAST:event_jMenuItemTransformacoesEscalaMousePressed
+
+    private void jMenuItemTransformacoesReflexaoXMousePressed(final java.awt.event.MouseEvent evt) {// GEN-FIRST:event_jMenuItemTransformacoesReflexaoXMousePressed
+        opcaoAlgoritmo = 9;
+        System.out.println("Opção MousePressed: " + opcaoAlgoritmo);
+        
+        for (Reta r : retaList) {
+            r.reflexaoX();
+        }
+
+    }// GEN-LAST:event_jMenuItemTransformacoesReflexaoXMousePressed
+
+    private void jMenuItemTransformacoesReflexaoYMousePressed(final java.awt.event.MouseEvent evt) {// GEN-FIRST:event_jMenuItemTransformacoesReflexaoYMousePressed
+        opcaoAlgoritmo = 9;
+        System.out.println("Opção MousePressed: " + opcaoAlgoritmo);
+        
+        for (Reta r : retaList) {
+            r.reflexaoY();
+        }
+
+    }// GEN-LAST:event_jMenuItemTransformacoesReflexaoYMousePressed
+
+    private void jMenuItemTransformacoesReflexaoXYMousePressed(final java.awt.event.MouseEvent evt) {// GEN-FIRST:event_jMenuItemTransformacoesReflexaoXYMousePressed
+        opcaoAlgoritmo = 9;
+        System.out.println("Opção MousePressed: " + opcaoAlgoritmo);
+        
+        for (Reta r : retaList) {
+            r.reflexaoXY();
+        }
+
+    }// GEN-LAST:event_jMenuItemTransformacoesReflexaoXYMousePressed
 
     /**
      * @param args the command line arguments

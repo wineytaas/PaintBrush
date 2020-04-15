@@ -49,5 +49,20 @@ public class Point
 
         g2d.draw(new Line2D.Double(x, y, x, y));
     }
+
+    public void rotacionar(int grau)
+    {
+         double grauRad = Math.toRadians(grau);
+         double sinGrauRad = Math.sin(grauRad);
+         double cosGrauRad = Math.cos(grauRad);
+         int x = this.x;
+         int y = this.y;
+
+         this.x = (int)((x * cosGrauRad) - (y * sinGrauRad));
+         this.y = (int)((x * sinGrauRad) + (y * cosGrauRad));
+
+         System.out.println("============ Rotação do ponto ============");
+         System.out.println("X: " + x + " Y: " + y + " X': " + this.x + " Y': " + this.y );
+    }
     
 }

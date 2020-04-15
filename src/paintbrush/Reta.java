@@ -26,9 +26,13 @@ public class Reta {
     }
     
     Reta(Point p1, Point p2){
+        this(p1,p2,Color.red);
+    }
+
+    Reta(Point p1, Point p2, Color c){
         this.p1 = p1;
         this.p2 = p2;
-        cor = Color.red;
+        this.setColor(c);
     }
 
     public boolean inserirPonto(Point p) {
@@ -100,7 +104,8 @@ public class Reta {
 
         int x1 = p1.x, y1 = p1.y , x2 = p2.x, y2 = p2.y;
 
-        System.out.println("Entrei no bresenham");
+        System.out.println("============ Bresenham ============");
+        System.out.println("X1: " + x1 + " Y1: " + y1 + " X2: " + x2 + " Y2: " + y2 + " Color" + cor);
         int deltaX = x2 - x1;
         int deltaY = y2 - y1;
         int x = x1;
@@ -172,6 +177,7 @@ public class Reta {
 
     public void rotacionar(int grau)
     {
+        System.out.println("============ Rotação de Reta ============");
         cor = Color.white;
         bresenham();
 
@@ -182,12 +188,15 @@ public class Reta {
         int deltaX = p2.x - p1.x;
         int deltaY = p2.y - p1.y;
         
-        int novox2 =(int)(deltaX*cosGrauRad - deltaY*sinGrauRad) ;
+        int novox2 = (int)(deltaX*cosGrauRad - deltaY*sinGrauRad) ;
         int novoy2 = (int)(deltaX*sinGrauRad + deltaY*cosGrauRad);
 
         p2.x = novox2 + p1.x;
         p2.y = novoy2 + p1.y;
         
+        // p1.rotacionar(grau);
+        // p2.rotacionar(grau);
+
         cor = Color.red;
         bresenham();
     }
@@ -223,4 +232,68 @@ public class Reta {
         cor = Color.red;
         bresenham();
     }
-  }
+  
+    public void reflexaoX()
+    {
+        cor = Color.white;
+        bresenham();
+
+        int deltaX = (p2.x - p1.x);
+        int deltaY = (p2.y - p1.y) * -1;
+        
+        int novoX2 = deltaX + p1.x;
+        int novoY2 = deltaY + p1.y;
+        
+        p2.x = novoX2;
+        p2.y = novoY2;
+        
+        cor = Color.red;
+        bresenham();
+    }
+
+    public void reflexaoY()
+    {
+        cor = Color.white;
+        bresenham();
+
+        int deltaX = (p2.x - p1.x) * -1;
+        int deltaY = (p2.y - p1.y);
+
+        int novoX2 = deltaX + p1.x;
+        int novoY2 = deltaY + p1.y;
+        
+        p2.x = novoX2;
+        p2.y = novoY2;
+        
+        cor = Color.red;
+        bresenham();
+    }
+
+    public void reflexaoXY()
+    {
+        cor = Color.white;
+        bresenham();
+
+        int deltaX = (p2.x - p1.x) * -1;
+        int deltaY = (p2.y - p1.y) * -1;
+
+        int novoX2 = deltaX + p1.x;
+        int novoY2 = deltaY + p1.y;
+
+        p2.x = novoX2;
+        p2.y = novoY2;
+        
+        cor = Color.red;
+        bresenham();
+    }
+
+    public void setColor(Color c)
+    {
+        cor = c;
+    }
+
+    public Color getColor()
+    {
+        return cor;
+    }
+}

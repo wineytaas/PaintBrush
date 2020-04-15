@@ -1,5 +1,7 @@
 package paintbrush;
 
+import java.awt.Color;
+
 public class Retangulo {
     private Point p1;
     private Point p2;
@@ -28,32 +30,37 @@ public class Retangulo {
     public boolean inserir(Point p){
         boolean plotar = inserirPonto(p);
         if(plotar){
-            Reta r1  = new Reta(p1, p2);
-            Reta r2 = new Reta(p2, p3);
-            Reta r3 = new Reta(p3, p4);
-            Reta r4 = new Reta(p4, p1);
-
-            r1.bresenham();
-            r2.bresenham();
-            r3.bresenham();
-            r4.bresenham();
-
-            //p1 = p2 = p3 = p4 = null;
-            countPoints = 0;
+            plotar(Color.red);
         }
         return plotar;
     }
 
+    public void plotar(Color c)
+    {
+        Reta r1  = new Reta(p1, p2, c);
+        Reta r2 = new Reta(p2, p3, c);
+        Reta r3 = new Reta(p3, p4, c);
+        Reta r4 = new Reta(p4, p1, c);
+
+        r1.bresenham();
+        r2.bresenham();
+        r3.bresenham();
+        r4.bresenham();
+
+        //p1 = p2 = p3 = p4 = null;
+        countPoints = 0;
+    }
+
     public void rotacionar(int grau)
     {
-        Reta r1  = new Reta(p1, p2);
-        Reta r2 = new Reta(p2, p3);
-        Reta r3 = new Reta(p3, p4);
-        Reta r4 = new Reta(p4, p1);
 
-        r1.rotacionar(grau);
-        r2.rotacionar(grau);
-        r3.rotacionar(grau);
-        r4.rotacionar(grau);
+        plotar(Color.white);
+
+        p1.rotacionar(grau);
+        p2.rotacionar(grau);
+        p3.rotacionar(grau);
+        p4.rotacionar(grau);
+
+        plotar(Color.red);
     }
 }
