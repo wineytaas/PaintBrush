@@ -43,4 +43,17 @@ public class Retangulo {
         }
         return plotar;
     }
+
+    public void rotacionar(int grau)
+    {
+        Reta r1  = new Reta(p1, p2);
+        Reta r2 = new Reta(p2, p3);
+        Reta r3 = new Reta(p3, p4);
+        Reta r4 = new Reta(p4, p1);
+
+        r1.rotacionar(grau);
+        r2.rotacionar(grau);
+        r3.rotacionar(grau);
+        r4.rotacionar(grau);
+    }
 }

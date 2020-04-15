@@ -39,8 +39,13 @@ public class Point
     
     public void draw()
     {
+      draw(Color.red);
+    }
+
+    public void draw(Color c)
+    {
         g2d.setStroke(new BasicStroke(0.1f));
-        g2d.setColor(Color.red);
+        g2d.setColor(c);
 
         g2d.draw(new Line2D.Double(x, y, x, y));
     }

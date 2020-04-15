@@ -5,17 +5,20 @@
  */
 package paintbrush;
 
+import java.awt.Color;
+
+import javafx.scene.effect.ColorAdjust;
 
 /**
  *
  * @author Disney
  * @author Ernesto
- * @author Raiana
  */
 public class Reta {
 
     private Point p1;
     private Point p2;
+    private Color cor;
     private static int countPoints = 0;
 
     Reta(){
@@ -25,6 +28,7 @@ public class Reta {
     Reta(Point p1, Point p2){
         this.p1 = p1;
         this.p2 = p2;
+        cor = Color.red;
     }
 
     public boolean inserirPonto(Point p) {
@@ -66,7 +70,7 @@ public class Reta {
         double x = (double) p1.x, y = (double) p1.y;
 
         Point pontoDesenhar = new Point((int) Math.round(x), (int) Math.round(y), p1.g2d);
-        pontoDesenhar.draw();
+        pontoDesenhar.draw(cor);
 
         int passos = Math.max(Math.abs(deltaX), Math.abs(deltaY));
         double xIncr = ((double) deltaX) / ((double) passos);
@@ -76,7 +80,7 @@ public class Reta {
             x += xIncr;
             y += yIncr;
             pontoDesenhar = new Point((int) Math.round(x), (int) Math.round(y), p1.g2d);
-            pontoDesenhar.draw();
+            pontoDesenhar.draw(cor);
         }
 
         //p1 = p2 = null;
@@ -107,7 +111,7 @@ public class Reta {
         // //colore(x, y, cor);
         // buffer.setRGB(x, y, Color.BLACK.getRGB());
         Point pontoDesenhar = new Point(x, y, p1.g2d);
-        pontoDesenhar.draw();
+        pontoDesenhar.draw(cor);
 
         if (deltaX < 0) {
             deltaX = -deltaX;
@@ -140,7 +144,7 @@ public class Reta {
                 //colore(x, y, cor);
                 // buffer.setRGB(x, y, Color.BLACK.getRGB());
                 pontoDesenhar = new Point(x, y, p1.g2d);
-                pontoDesenhar.draw();
+                pontoDesenhar.draw(cor);
             }// fim for
         }// fim if
         else { // 2 caso
@@ -159,10 +163,64 @@ public class Reta {
                 // //colore(x, y, cor);
                 // buffer.setRGB(x, y, Color.BLACK.getRGB());
                 pontoDesenhar = new Point(x, y, p1.g2d);
-                pontoDesenhar.draw();
+                pontoDesenhar.draw(cor);
             }// fim for
         }// fim else
         //p1 = p2 = null;
         countPoints = 0;
+    }
+
+    public void rotacionar(int grau)
+    {
+        cor = Color.white;
+        bresenham();
+
+        double grauRad = Math.toRadians(grau);
+        double sinGrauRad = Math.sin(grauRad);
+        double cosGrauRad = Math.cos(grauRad);
+
+        int deltaX = p2.x - p1.x;
+        int deltaY = p2.y - p1.y;
+        
+        int novox2 =(int)(deltaX*cosGrauRad - deltaY*sinGrauRad) ;
+        int novoy2 = (int)(deltaX*sinGrauRad + deltaY*cosGrauRad);
+
+        p2.x = novox2 + p1.x;
+        p2.y = novoy2 + p1.y;
+        
+        cor = Color.red;
+        bresenham();
+    }
+
+    public void escalar(double valorA, double valorB){
+        cor = Color.white;
+        bresenham();
+
+        int deltaX = p2.x - p1.x;
+        int deltaY = p2.y - p1.y;
+        
+        p2.x = (int)(Math.round(deltaX * valorA));
+        p2.y = (int)(Math.round(deltaY * valorB));
+        
+        p2.x += p1.x;
+        p2.y += p1.y;
+
+        cor = Color.red;
+        bresenham();
+        
+    }
+
+    public void transladar(int valorA, int valorB)
+    {
+        cor = Color.white;
+        bresenham();
+
+        p1.x = p1.x + valorA;
+        p2.x = p2.x + valorA;
+        p1.y = p1.y + valorB;
+        p2.y = p2.y + valorB;
+
+        cor = Color.red;
+        bresenham();
     }
   }

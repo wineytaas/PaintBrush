@@ -6,13 +6,21 @@
 package paintbrush;
 
 import java.awt.BasicStroke;
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Graphics2D;
+import java.awt.GridLayout;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.geom.Line2D;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.*;
+
+import sun.awt.Graphics2Delegate;
+import sun.font.GraphicComponent;
+
 
 /**
  *
@@ -78,16 +86,13 @@ public class PaintBrushFrame extends javax.swing.JFrame{
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        final javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 268, Short.MAX_VALUE)
-        );
+        jPanel1.setBackground(Color.WHITE);
+        jPanel1Layout.setHorizontalGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(0, 400, Short.MAX_VALUE));
+        jPanel1Layout.setVerticalGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(0, 268, Short.MAX_VALUE));
 
         jMenuAcoes.setText("Ações");
 
@@ -100,7 +105,7 @@ public class PaintBrushFrame extends javax.swing.JFrame{
 
         jMenuItemRetaDDA.setText("Algoritmo DDA");
         jMenuItemRetaDDA.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
+            public void mousePressed(final java.awt.event.MouseEvent evt) {
                 jMenuItemRetaDDAMousePressed(evt);
             }
         });
@@ -108,7 +113,7 @@ public class PaintBrushFrame extends javax.swing.JFrame{
 
         jMenuItemRetaBresenham.setText("Algoritmo Bresenham");
         jMenuItemRetaBresenham.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
+            public void mousePressed(final java.awt.event.MouseEvent evt) {
                 retaBresenhamMenuItemMousePressed(evt);
             }
         });
@@ -121,7 +126,7 @@ public class PaintBrushFrame extends javax.swing.JFrame{
 
         jMenuItemPoligonosRetangulo.setText("Retângulo");
         jMenuItemPoligonosRetangulo.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
+            public void mousePressed(final java.awt.event.MouseEvent evt) {
                 retanguloMenuItemMousePressed(evt);
             }
         });
@@ -134,7 +139,7 @@ public class PaintBrushFrame extends javax.swing.JFrame{
 
         jMenuItemCircunferenciaBresenham.setText("Algoritmo de Bresenham");
         jMenuItemCircunferenciaBresenham.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
+            public void mousePressed(final java.awt.event.MouseEvent evt) {
                 jMenuItemCircunferenciaBresenhamMousePressed(evt);
             }
         });
@@ -145,12 +150,27 @@ public class PaintBrushFrame extends javax.swing.JFrame{
         jMenuTransformacoes.setText("Transformações");
 
         jMenuItemTransformacoesTraslacao.setText("Translação");
+        jMenuItemTransformacoesTraslacao.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(final java.awt.event.MouseEvent evt) {
+                jMenuItemTransformacoesTraslacaoMousePressed(evt);
+            }
+        });
         jMenuTransformacoes.add(jMenuItemTransformacoesTraslacao);
 
         jMenuItemTransformacoesRotacao.setText("Rotação");
+        jMenuItemTransformacoesRotacao.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(final java.awt.event.MouseEvent evt) {
+                jMenuItemTransformacoesRotacaoMousePressed(evt);
+            }
+        });
         jMenuTransformacoes.add(jMenuItemTransformacoesRotacao);
 
         jMenuItemTransformacoesEscala.setText("Escala");
+        jMenuItemTransformacoesEscala.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(final java.awt.event.MouseEvent evt) {
+                jMenuItemTransformacoesEscalaMousePressed(evt);
+            }
+        });
         jMenuTransformacoes.add(jMenuItemTransformacoesEscala);
 
         jMenuItemTransformacoesReflexaoX.setText("Reflexão X");
@@ -166,86 +186,161 @@ public class PaintBrushFrame extends javax.swing.JFrame{
 
         setJMenuBar(jMenuBar1);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        final javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+        layout.setHorizontalGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addComponent(
+                jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE));
+        layout.setVerticalGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING,
+                        layout.createSequentialGroup().addContainerGap().addComponent(jPanel1,
+                                javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE,
+                                Short.MAX_VALUE)));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void retaBresenhamMenuItemMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_retaBresenhamMenuItemMousePressed
-       opcaoAlgoritmo = 3;
-       System.out.println("Opção MousePressed: " + opcaoAlgoritmo);
-    }//GEN-LAST:event_retaBresenhamMenuItemMousePressed
+    private void retaBresenhamMenuItemMousePressed(final java.awt.event.MouseEvent evt) {// GEN-FIRST:event_retaBresenhamMenuItemMousePressed
+        opcaoAlgoritmo = 3;
+        System.out.println("Opção MousePressed: " + opcaoAlgoritmo);
+    }// GEN-LAST:event_retaBresenhamMenuItemMousePressed
 
-    private void retanguloMenuItemMousePressed(java.awt.event.MouseEvent evt){//GEN-FIRST:event_retanguloMenuItemMousePressed
+    private void retanguloMenuItemMousePressed(final java.awt.event.MouseEvent evt) {// GEN-FIRST:event_retanguloMenuItemMousePressed
         opcaoAlgoritmo = 4;
         System.out.println("Opção MousePressed: " + opcaoAlgoritmo);
-    }//GEN-LAST:event_retanguloMenuItemMousePressed
+    }// GEN-LAST:event_retanguloMenuItemMousePressed
 
-    private void jMenuItemRetaDDAMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuItemRetaDDAMousePressed
+    private void jMenuItemRetaDDAMousePressed(final java.awt.event.MouseEvent evt) {// GEN-FIRST:event_jMenuItemRetaDDAMousePressed
         opcaoAlgoritmo = 2;
         System.out.println("Opção MousePressed: " + opcaoAlgoritmo);
-    }//GEN-LAST:event_jMenuItemRetaDDAMousePressed
+    }// GEN-LAST:event_jMenuItemRetaDDAMousePressed
 
-    private void jMenuItemCircunferenciaBresenhamMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuItemCircunferenciaBresenhamMousePressed
+    private void jMenuItemCircunferenciaBresenhamMousePressed(final java.awt.event.MouseEvent evt) {// GEN-FIRST:event_jMenuItemCircunferenciaBresenhamMousePressed
         opcaoAlgoritmo = 5;
         System.out.println("Opção MousePressed: " + opcaoAlgoritmo);
-    }//GEN-LAST:event_jMenuItemCircunferenciaBresenhamMousePressed
+    }// GEN-LAST:event_jMenuItemCircunferenciaBresenhamMousePressed
+
+    private void jMenuItemTransformacoesTraslacaoMousePressed(final java.awt.event.MouseEvent evt) {// GEN-FIRST:event_jMenuItemTransformacoesTraslacaoMousePressed
+        opcaoAlgoritmo = 6;
+        System.out.println("Opção MousePressed: " + opcaoAlgoritmo);
+
+        JPanel p = new JPanel(new BorderLayout(5, 5));
+        JPanel labels = new JPanel(new GridLayout(0, 1, 2, 2));
+        labels.add(new JLabel("Fator a:", SwingConstants.RIGHT));
+        labels.add(new JLabel("Fator b:", SwingConstants.RIGHT));
+        p.add(labels, BorderLayout.WEST);
+        
+
+        JPanel controls = new JPanel(new GridLayout(0, 1, 2, 2));
+        JTextField a = new JTextField();
+        JTextField b = new JTextField();
+        controls.add(a);
+        controls.add(b);
+        p.add(controls, BorderLayout.CENTER);
+
+        JOptionPane.showMessageDialog(jPanel1, p, "Translação", JOptionPane.QUESTION_MESSAGE);
+        int valorA = Integer.parseInt(a.getText());
+        int valorB = Integer.parseInt(b.getText());
+
+        for (Reta r : retaList) {
+            r.transladar(valorA,valorB);
+        }
+
+    }// GEN-LAST:event_jMenuItemTransformacoesTraslacaoMousePressed
+
+    private void jMenuItemTransformacoesRotacaoMousePressed(final java.awt.event.MouseEvent evt) {// GEN-FIRST:event_jMenuItemTransformacoesRotacaoMousePressed
+        opcaoAlgoritmo = 7;
+        System.out.println("Opção MousePressed: " + opcaoAlgoritmo);
+        int grau = Integer.parseInt(JOptionPane.showInputDialog(null, "Digite o grau: "));
+        // clear((Graphics2D) evt.getComponent().getGraphics(), evt.getComponent().getBackground());
+        // clear((Graphics2D) jPanel1.getGraphics(), Color.WHITE);
+        for (Reta r : retaList) {
+            r.rotacionar(grau);
+        }
+
+        // for (Retangulo ret : retanguloList) {
+        //     ret.rotacionar(grau);
+        // }
+
+    }// GEN-LAST:event_jMenuItemTransformacoesRotacaoMousePressed
+
+    private void jMenuItemTransformacoesEscalaMousePressed(final java.awt.event.MouseEvent evt) {// GEN-FIRST:event_jMenuItemTransformacoesEscalaMousePressed
+        opcaoAlgoritmo = 8;
+        System.out.println("Opção MousePressed: " + opcaoAlgoritmo);
+        JPanel p = new JPanel(new BorderLayout(5, 5));
+        JPanel labels = new JPanel(new GridLayout(0, 1, 2, 2));
+        labels.add(new JLabel("Fator a:", SwingConstants.RIGHT));
+        labels.add(new JLabel("Fator b:", SwingConstants.RIGHT));
+        p.add(labels, BorderLayout.WEST);
+        
+
+        JPanel controls = new JPanel(new GridLayout(0, 1, 2, 2));
+        JTextField a = new JTextField();
+        JTextField b = new JTextField();
+        controls.add(a);
+        controls.add(b);
+        p.add(controls, BorderLayout.CENTER);
+
+        JOptionPane.showMessageDialog(jPanel1, p, "Escala", JOptionPane.QUESTION_MESSAGE);
+        double valorA = Double.parseDouble(a.getText());
+        double valorB = Double.parseDouble(b.getText());
+        
+        for (Reta r : retaList) {
+            r.escalar(valorA, valorB);
+        }
+
+    }// GEN-LAST:event_jMenuItemTransformacoesEscalaMousePressed
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+    public static void main(final String args[]) {
         /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+        // <editor-fold defaultstate="collapsed" desc=" Look and feel setting code
+        // (optional) ">
+        /*
+         * If Nimbus (introduced in Java SE 6) is not available, stay with the default
+         * look and feel. For details see
+         * http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
         try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+            for (final javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(PaintBrushFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(PaintBrushFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(PaintBrushFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(PaintBrushFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (final ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(PaintBrushFrame.class.getName()).log(java.util.logging.Level.SEVERE,
+                    null, ex);
+        } catch (final InstantiationException ex) {
+            java.util.logging.Logger.getLogger(PaintBrushFrame.class.getName()).log(java.util.logging.Level.SEVERE,
+                    null, ex);
+        } catch (final IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(PaintBrushFrame.class.getName()).log(java.util.logging.Level.SEVERE,
+                    null, ex);
+        } catch (final javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(PaintBrushFrame.class.getName()).log(java.util.logging.Level.SEVERE,
+                    null, ex);
         }
-        //</editor-fold>
+        // </editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                PaintBrushFrame paintBrushFrame = new PaintBrushFrame();
+                final PaintBrushFrame paintBrushFrame = new PaintBrushFrame();
                 paintBrushFrame.setVisible(true);
                 paintBrushFrame.jPanel1.addMouseListener(new MouseAdapter() {
-                    
-                @Override
-                public void mousePressed(MouseEvent e) {
-                    paintBrushFrame.opcoes(new Point(e.getX(), e.getY(), e.getComponent().getGraphics()));
-                }
 
-                @Override
-                public void mouseReleased(MouseEvent e) {
-                    //setBackground(background);background
-                }
-            });
+                    @Override
+                    public void mousePressed(final MouseEvent e) {
+                        paintBrushFrame.opcoes(new Point(e.getX(), e.getY(), e.getComponent().getGraphics()));
+                    }
+
+                    @Override
+                    public void mouseReleased(final MouseEvent e) {
+                        // setBackground(background);background
+                    }
+                });
             }
         });
     }
@@ -272,83 +367,75 @@ public class PaintBrushFrame extends javax.swing.JFrame{
     private javax.swing.JMenuItem jMenuItemRetaDDA;
     // End of variables declaration//GEN-END:variables
 
-    public static void drawPoint(Graphics2D g2d, int x, int y)
-    {
+    public static void drawPoint(final Graphics2D g2d, final int x, final int y, Color c) {
         g2d.setStroke(new BasicStroke(0.1f));
-        g2d.setColor(Color.red);
+        g2d.setColor(c);
 
         g2d.draw(new Line2D.Double(x, y, x, y));
     }
-    
-    public void opcoes(Point p)
-    {
+
+    public void opcoes(final Point p) {
         System.out.println("Opção de desenho: " + opcaoAlgoritmo);
-        if(opcaoAlgoritmo == 0){
+        if (opcaoAlgoritmo == 0) {
             System.out.println(" NADA ");
-        }
-        else if(opcaoAlgoritmo == 1){
+        } else if (opcaoAlgoritmo == 1) {
             System.out.println(" Pontos ");
-        }
-        else if(opcaoAlgoritmo == 2){
+        } else if (opcaoAlgoritmo == 2) {
             System.out.println(" Reta DDA ");
-            if(reta.dda(p))
-            {
+            if (reta.dda(p)) {
                 retaList.add(reta);
                 reta = new Reta();
-                System.out.println(" Reta count: " + retaList.size() );
+                System.out.println(" Reta count: " + retaList.size());
             }
-        }
-        else if(opcaoAlgoritmo == 3){
+        } else if (opcaoAlgoritmo == 3) {
             System.out.println(" Reta Bresenham ");
-            
-            if(reta.bresenham(p))
-            {
+
+            if (reta.bresenham(p)) {
                 retaList.add(reta);
                 reta = new Reta();
-                System.out.println(" Reta count: " + retaList.size() );
+                System.out.println(" Reta count: " + retaList.size());
             }
-        }
-        else if(opcaoAlgoritmo == 4){
+        } else if (opcaoAlgoritmo == 4) {
             System.out.println(" Poligonos - retângulo ");
-            if(retangulo.inserir(p))
-            {
+            if (retangulo.inserir(p)) {
                 retanguloList.add(retangulo);
                 System.out.println(" Retangulos count: " + retanguloList.size());
                 retangulo = new Retangulo();
             }
-        }
-        else if(opcaoAlgoritmo == 5){
+        } else if (opcaoAlgoritmo == 5) {
             System.out.println(" Circunferencia - Bresenham ");
-            if(circunferencia.bresenhams(p))
-            {
+            if (circunferencia.bresenhams(p)) {
                 circunferenciaList.add(circunferencia);
-                System.out.println(" Circunferencias count: " + circunferenciaList.size() );
+                System.out.println(" Circunferencias count: " + circunferenciaList.size());
                 circunferencia = new Circunferencia();
             }
-        }
-        else if(opcaoAlgoritmo == 6){
+        } else if (opcaoAlgoritmo == 6) {
             System.out.println(" - Transformações Geométricas 2D: translação");
-        }
-        else if(opcaoAlgoritmo == 7){
+        } else if (opcaoAlgoritmo == 7) {
             System.out.println(" - Transformações Geométricas 2D: rotação");
-        }
-        else if(opcaoAlgoritmo == 8){
+        } else if (opcaoAlgoritmo == 8) {
             System.out.println(" - Transformações Geométricas 2D: escala");
-        }
-        else if(opcaoAlgoritmo == 9){
+        } else if (opcaoAlgoritmo == 9) {
             System.out.println(" - Transformações Geométricas 2D: reflexões X");
-        }
-        else if(opcaoAlgoritmo == 10){
+        } else if (opcaoAlgoritmo == 10) {
             System.out.println(" - Transformações Geométricas 2D: reflexões Y");
-        }
-        else if(opcaoAlgoritmo == 11){
+        } else if (opcaoAlgoritmo == 11) {
             System.out.println(" - Transformações Geométricas 2D: reflexões XY");
-        }
-        else if(opcaoAlgoritmo == 12){
+        } else if (opcaoAlgoritmo == 12) {
             System.out.println("Recorte de Regiões: Algoritmo de Cohen-Sutherland");
-        }
-        else if(opcaoAlgoritmo == 13){
+        } else if (opcaoAlgoritmo == 13) {
             System.out.println("Recorte de Regiões: Algoritmo de Liang Barsky");
+        }
+    }
+
+    public void clear(Graphics2D g2d, Color c) {
+        
+        for(int x = 0; x < jPanel1.getWidth(); x++)
+        {
+            for(int y = 0; y < jPanel1.getHeight(); y++)
+            {
+                drawPoint(g2d, x, y, c);
+            }   
         }
     }
 }
