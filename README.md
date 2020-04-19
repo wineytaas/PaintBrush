@@ -4,9 +4,9 @@ Prof. Pedro Henrique PennaValor: 15 Pontos
 Graduação em Ciência da Computação – 6ºPeríodo
 Pontifícia Universidade Católica de Minas Gerais (PUC Minas)
 ### Resumo
-Este  trabalho  tem  como  objetivo  complementar  os  conhecimentos  teóricos  na  disciplina  deComputação Gráfica com o desenvolvimento de uma aplicação de desenho gráfico assistido,como o Paint Brush.
+Este  trabalho  tem  como  objetivo  complementar  os  conhecimentos  teóricos  na  disciplina  de Computação Gráfica com o desenvolvimento de uma aplicação de desenho gráfico assistido,como o Paint Brush.
 ### 1.  Descrição
-Você deverá implementar uma aplicação de desenho gráfico assistido que permita um usuáriointeragir com uma matriz de Pixels (Canvas) utilizando o mouse. Essa aplicação deve contem-plar as seguintes funcionalidades:
+Você deverá implementar uma aplicação de desenho gráfico assistido que permita um usuário interagir com uma matriz de Pixels (Canvas) utilizando o mouse. Essa aplicação deve contem-plar as seguintes funcionalidades:
 - Rasterização de Pontos.
 - Rasterização de Retas: algoritmos DDA e Bresenham.
 - Rasterização de Polígonos: retângulo.

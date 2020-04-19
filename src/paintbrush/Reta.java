@@ -180,7 +180,8 @@ public class Reta {
         System.out.println("============ Rotação de Reta ============");
         cor = Color.white;
         bresenham();
-
+        
+        
         double grauRad = Math.toRadians(grau);
         double sinGrauRad = Math.sin(grauRad);
         double cosGrauRad = Math.cos(grauRad);
@@ -194,8 +195,8 @@ public class Reta {
         p2.x = novox2 + p1.x;
         p2.y = novoy2 + p1.y;
         
-        // p1.rotacionar(grau);
-        // p2.rotacionar(grau);
+        //p1.rotacionar(grau);
+        //p2.rotacionar(grau);
 
         cor = Color.red;
         bresenham();

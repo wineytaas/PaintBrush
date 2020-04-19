@@ -377,7 +377,7 @@ public class PaintBrushFrame extends javax.swing.JFrame{
 
                     @Override
                     public void mousePressed(final MouseEvent e) {
-                        paintBrushFrame.opcoes(new Point(e.getX(), e.getY(), e.getComponent().getGraphics()));
+                        paintBrushFrame.opcoes(new Point(e.getX(), e.getY(), e.getComponent().getGraphics(), e.getComponent().getHeight(), e.getComponent().getWidth()));
                     }
 
                     @Override

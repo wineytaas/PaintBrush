@@ -22,19 +22,33 @@ public class Point
     public int x;
     public int y;
     public Graphics2D g2d;
+    public static int largura;
+    public static int altura;
     
     Point(){
        this(0,0,null);
     }
     
     Point(int x, int y, Graphics g){
-       this(x,y,(Graphics2D) g);
+       this(x,y,g,0, 0);
+    }
+    
+    Point(int x, int y, Graphics g, int p_altura, int p_largura ){
+       this(x,y,(Graphics2D) g, p_altura, p_largura);
     }
     
     Point(int x, int y, Graphics2D g2d){
+       this(x,y,g2d, 0, 0);
+    }
+    
+    Point(int x, int y, Graphics2D g2d, int p_altura, int p_largura){
        this.x = x;
        this.y = y;
        this.g2d = g2d;
+       if(p_altura > 0)
+        this.altura = p_altura;
+       if(p_largura > 0)
+        this.largura = p_largura;
     }
     
     public void draw()
@@ -46,8 +60,20 @@ public class Point
     {
         g2d.setStroke(new BasicStroke(0.1f));
         g2d.setColor(c);
-
-        g2d.draw(new Line2D.Double(x, y, x, y));
+        
+        int drawX = x;
+        int drawY = y;
+        
+        /*if(largura > 0 && altura > 0)
+        {
+            int meioX = largura/2;
+            int meioY = altura/2;
+            
+            drawX = meioX + (x/2);
+            drawY = meioY + (y/2);
+        }*/
+        
+        g2d.draw(new Line2D.Double(drawX, drawY, drawX, drawY));
     }
 
     public void rotacionar(int grau)
@@ -60,7 +86,6 @@ public class Point
 
          this.x = (int)((x * cosGrauRad) - (y * sinGrauRad));
          this.y = (int)((x * sinGrauRad) + (y * cosGrauRad));
-
          System.out.println("============ Rotação do ponto ============");
          System.out.println("X: " + x + " Y: " + y + " X': " + this.x + " Y': " + this.y );
     }
