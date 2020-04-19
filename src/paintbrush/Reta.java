@@ -179,8 +179,7 @@ public class Reta {
         System.out.println("============ Rotação de Reta ============");
         cor = Color.white;
         bresenham();
-        
-        
+
         double grauRad = Math.toRadians(grau);
         double sinGrauRad = Math.sin(grauRad);
         double cosGrauRad = Math.cos(grauRad);
@@ -194,8 +193,8 @@ public class Reta {
         p2.x = novox2 + p1.x;
         p2.y = novoy2 + p1.y;
         
-        //p1.rotacionar(grau);
-        //p2.rotacionar(grau);
+        // p1.rotacionar(grau);
+        // p2.rotacionar(grau);
 
         cor = Color.red;
         bresenham();
@@ -296,4 +295,110 @@ public class Reta {
     {
         return cor;
     }
+
+    public int obtemCodigo( int xDado, int yDado, int xMin, int yMin, int xMax, int yMax ) {
+        int codigo = 0;
+
+        // fazer para xInicio e xFim separado
+        
+        if (xDado < xMin) {
+            codigo += 1;
+        }
+        if ( xDado > xMax) {
+            codigo += 2;
+        }
+
+        if ( yDado < yMin) {
+            codigo += 4;
+        }
+        if ( yDado > yMax) {
+            codigo += 8;
+        }
+
+        return codigo;
+    }
+    
+    public int bit(int codigo, int pos) {
+
+        int bit = codigo << (31 - pos);
+        bit = bit >>> 31;
+        return bit;
+    }
+    
+    public void cohenSutherland(Point p1Dado, Point p2Dado, Point pMin, Point pMax) {
+
+        int x1Dado = p1Dado.x;
+        int y1Dado = p1Dado.y;
+        int x2Dado = p2Dado.x;
+        int y2Dado = p2Dado.y;
+        int xMin = pMin.x;
+        int yMin = pMin.y;
+        int xMax = pMax.x;
+        int yMax = pMax.y;
+
+        boolean aceito = false;
+        boolean feito = false;
+
+        int cFora;
+
+        double xInt = 0, yInt = 0; 
+
+        while (!feito) {
+            int c1 = obtemCodigo(x1Dado, y1Dado, xMin, yMin, xMax, yMax);
+            int c2 = obtemCodigo( x2Dado, y2Dado, xMin, yMin, xMax, yMax);
+
+            if (c1 == 0 && c2 == 0) {
+                aceito = true;
+                feito = true;
+            } else if ((c1 & c2) != 0) { // totalmente fora da janela
+
+                // marca a figura para nao ser desenhada
+                feito = true;
+            } else { // calcula
+
+                // se c1 != 0 então cFora = c1
+                // senao cFora = c2
+                cFora = (c1 != 0) ? c1 : c2;
+
+                if (bit(cFora, 0) == 1) {// esq
+                    xInt = xMin;
+                    yInt = y1Dado + (y2Dado - y1Dado) * (xMin - x1Dado) / (x2Dado - x1Dado);
+
+                } else if (bit(cFora, 1) == 1) {// dir
+                    xInt = xMax;
+                    yInt = y1Dado + (y2Dado - y1Dado) * (xMax - x1Dado) / (x2Dado - x1Dado);
+
+                } else if (bit(cFora, 2) == 1) {// inferior
+                    yInt = yMin;
+                    xInt = x1Dado + (x2Dado - x1Dado) * (yMin - y1Dado) / (y2Dado - y1Dado);
+
+                } else if (bit(cFora, 3) == 1) { // superior
+                    yInt = yMax;
+                    xInt = x1Dado + (x2Dado - x1Dado) * (yMax - y1Dado) / (y2Dado - y1Dado);
+
+                }
+
+                if (cFora == c1) {
+                    x1Dado = (int)(Math.round(xInt));
+                    y1Dado = (int)(Math.round(yInt));
+                    
+                } else {
+                    x2Dado = (int)(Math.round(xInt));
+                    y2Dado = (int)(Math.round(yInt));
+                    
+                }
+
+            }
+        }// fim while
+        
+        if(aceito) {
+            p1.x = x1Dado;
+            p1.y = y1Dado;
+            p2.x = x2Dado;
+            p2.y= y2Dado;
+
+            this.dda(p1Dado, p2Dado);
+        }
+    }
+
 }
