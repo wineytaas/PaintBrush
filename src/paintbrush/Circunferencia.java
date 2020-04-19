@@ -120,6 +120,18 @@ public class Circunferencia {
         bresenhams();
     }
     
+    public void escalar(Double ex, Double ey)
+    {
+        setColor(Color.white);
+        bresenhams();
+        
+        centro.escalar(ex, ey);
+        raio.escalar(ex, ey);
+        
+        setColor(Color.red);
+        bresenhams();
+    }
+    
     public void setColor(Color c)
     {
         if(centro != null)

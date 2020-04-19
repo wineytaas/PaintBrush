@@ -309,6 +309,14 @@ public class PaintBrushFrame extends javax.swing.JFrame{
         for (Reta r : retaList) {
             r.escalar(valorA, valorB);
         }
+        
+        for (Retangulo r : retanguloList) {
+            r.escalar(valorA, valorB);
+        }
+        
+        for (Circunferencia c : circunferenciaList) {
+            c.escalar(valorA, valorB);
+        }
 
     }// GEN-LAST:event_jMenuItemTransformacoesEscalaMousePressed
 

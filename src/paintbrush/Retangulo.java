@@ -77,6 +77,19 @@ public class Retangulo {
         plotar(Color.red);
     }
     
+    public void escalar(Double ex, Double ey)
+    {
+
+        plotar(Color.white);
+
+        p1.escalar(ex, ey);
+        p2.escalar(ex, ey);
+        p3.escalar(ex, ey);
+        p4.escalar(ex, ey);
+
+        plotar(Color.red);
+    }
+    
     public void setColor(Color c)
     {
         p1.color = p2.color = p3.color = p4.color = c;

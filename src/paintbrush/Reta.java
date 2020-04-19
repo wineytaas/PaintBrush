@@ -180,7 +180,7 @@ public class Reta {
     public void rotacionar(int grau)
     {
         System.out.println("============ Rotação de Reta ============");
-        p1.color = p2.color = Color.white;
+        setColor(Color.white);
         bresenham();
         
         
@@ -200,24 +200,27 @@ public class Reta {
         //p1.rotacionar(grau);
         //p2.rotacionar(grau);
 
-        p1.color = p2.color = Color.red;
+        setColor(Color.red);
         bresenham();
     }
 
-    public void escalar(double valorA, double valorB){
-        p1.color = p2.color = Color.white;
+    public void escalar(Double ex, Double ey){
+        setColor(Color.white);
         bresenham();
 
-        int deltaX = p2.x - p1.x;
+        /*int deltaX = p2.x - p1.x;
         int deltaY = p2.y - p1.y;
         
         p2.x = (int)(Math.round(deltaX * valorA));
         p2.y = (int)(Math.round(deltaY * valorB));
         
         p2.x += p1.x;
-        p2.y += p1.y;
+        p2.y += p1.y;*/
 
-        p1.color = p2.color = Color.red;
+        p1.escalar(ex, ey);
+        p2.escalar(ex, ey);
+        
+        setColor(Color.red);
         bresenham();
         
     }

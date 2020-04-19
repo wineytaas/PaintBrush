@@ -93,6 +93,12 @@ public class Point
         this.y += ty;
     }
     
+    public void escalar(Double ex, Double ey)
+    {
+        this.x = (int)(Math.round(ex * this.x));
+        this.y = (int)(Math.round(ey * this.y));
+    }
+    
     @Override
     public Point clone()
     {
