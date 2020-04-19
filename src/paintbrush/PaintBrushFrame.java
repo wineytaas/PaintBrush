@@ -81,6 +81,8 @@ public class PaintBrushFrame extends javax.swing.JFrame{
         jMenuItemTransformacoesReflexaoX = new javax.swing.JMenuItem();
         jMenuItemTransformacoesReflexaoY = new javax.swing.JMenuItem();
         jMenuItemTransformacoesReflexaoXY = new javax.swing.JMenuItem();
+        jMenuJanela = new javax.swing.JMenu();
+        jMenuItemJanelaCohenSutherland = new javax.swing.JMenuItem();
 
         jMenu5.setText("jMenu5");
 
@@ -198,6 +200,17 @@ public class PaintBrushFrame extends javax.swing.JFrame{
         jMenuTransformacoes.add(jMenuItemTransformacoesReflexaoXY);
 
         jMenuBar1.add(jMenuTransformacoes);
+
+        jMenuJanela.setText("Janela");
+
+        jMenuItemJanelaCohenSutherland.setText("Cohen-Sutherland");
+        jMenuItemJanelaCohenSutherland.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(final java.awt.event.MouseEvent evt) {
+                jMenuItemJanelaCohenSutherlandMousePressed(evt);
+            }
+        });
+        jMenuJanela.add(jMenuItemJanelaCohenSutherland);
+        jMenuBar1.add(jMenuJanela);
 
         setJMenuBar(jMenuBar1);
 
@@ -350,6 +363,11 @@ public class PaintBrushFrame extends javax.swing.JFrame{
 
     }// GEN-LAST:event_jMenuItemTransformacoesReflexaoXYMousePressed
 
+    private void jMenuItemJanelaCohenSutherlandMousePressed(final java.awt.event.MouseEvent evt) {// GEN-FIRST:event_jMenuItemJanelaCohenSutherlandMousePressed
+        opcaoAlgoritmo = 12;
+        System.out.println("Opção MousePressed: " + opcaoAlgoritmo);
+    }// GEN-LAST:event_jMenuItemJanelaCohenSutherlandMousePressed
+
     /**
      * @param args the command line arguments
      */
@@ -413,6 +431,7 @@ public class PaintBrushFrame extends javax.swing.JFrame{
     private javax.swing.JMenu jMenuCircunferencia;
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenu jMenuTransformacoes;
+    private javax.swing.JMenu jMenuJanela;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItemTransformacoesReflexaoY;
     private javax.swing.JMenuItem jMenuItemTransformacoesReflexaoXY;
@@ -423,6 +442,7 @@ public class PaintBrushFrame extends javax.swing.JFrame{
     private javax.swing.JMenuItem jMenuItemTransformacoesRotacao;
     private javax.swing.JMenuItem jMenuItemTransformacoesEscala;
     private javax.swing.JMenuItem jMenuItemTransformacoesReflexaoX;
+    private javax.swing.JMenuItem jMenuItemJanelaCohenSutherland;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JMenuItem jMenuItemRetaDDA;
     // End of variables declaration//GEN-END:variables
@@ -483,20 +503,26 @@ public class PaintBrushFrame extends javax.swing.JFrame{
             System.out.println(" - Transformações Geométricas 2D: reflexões XY");
         } else if (opcaoAlgoritmo == 12) {
             if (reta.inserirPonto(p)) {
-                Point p1 = new Point(reta.getP1().x, reta.getP2().y, getGraphics());//x1 y2
+                Point p1 = reta.getP1().clone();
+                Point p2 = reta.getP1().clone();
+                p2.y = reta.getP2().y;
+                Point p3 = reta.getP2().clone();
+                Point p4 = reta.getP2().clone();
+                p4.y = reta.getP1().y;
+                /*Point p1 = new Point(reta.getP1().x, reta.getP2().y, getGraphics());//x1 y2
                 Point p2 = new Point(reta.getP2().x, reta.getP2().y, getGraphics());//x2 y2
                 Point p3 = new Point(reta.getP1().x, reta.getP1().y, getGraphics());//x1 y1
-                Point p4 = new Point(reta.getP2().x, reta.getP2().y, getGraphics());//x2 y1
+                Point p4 = new Point(reta.getP2().x, reta.getP1().y, getGraphics());//x2 y1*/
 
                 Reta r1 = new Reta(p1, p2);
-                Reta r2 = new Reta(p2, p4);
+                Reta r2 = new Reta(p2, p3);
                 Reta r3 = new Reta(p3, p4);
-                Reta r4 = new Reta(p1, p3);
+                Reta r4 = new Reta(p4, p1);
 
-                r1.dda(p1, p2);
-                r2.dda(p2, p4);
-                r3.dda(p3, p4);
-                r4.dda(p1, p3);
+                r1.bresenham();
+                r2.bresenham();
+                r3.bresenham();
+                r4.bresenham();
 
                 retaList.add(r1);
                 retaList.add(r2);
@@ -509,8 +535,8 @@ public class PaintBrushFrame extends javax.swing.JFrame{
                     r.cohenSutherland(r.getP1(),r.getP2(), reta.getP1(), reta.getP2());
                 }
 
+                reta = new Reta();
             }
-            reta = new Reta();
             System.out.println("Recorte de Regiões: Algoritmo de Cohen-Sutherland");
         } else if (opcaoAlgoritmo == 13) {
             System.out.println("Recorte de Regiões: Algoritmo de Liang Barsky");
