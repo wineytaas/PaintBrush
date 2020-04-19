@@ -259,6 +259,14 @@ public class PaintBrushFrame extends javax.swing.JFrame{
         for (Reta r : retaList) {
             r.transladar(valorA,valorB);
         }
+        
+        for (Retangulo r : retanguloList) {
+            r.transladar(valorA,valorB);
+        }
+        
+        for (Circunferencia c : circunferenciaList) {
+            c.transladar(valorA,valorB);
+        }
 
     }// GEN-LAST:event_jMenuItemTransformacoesTraslacaoMousePressed
 

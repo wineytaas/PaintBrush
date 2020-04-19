@@ -37,10 +37,11 @@ public class Retangulo {
 
     public void plotar(Color c)
     {
-        Reta r1  = new Reta(p1, p2, c);
-        Reta r2 = new Reta(p2, p3, c);
-        Reta r3 = new Reta(p3, p4, c);
-        Reta r4 = new Reta(p4, p1, c);
+        setColor(c);
+        Reta r1  = new Reta(p1, p2);
+        Reta r2 = new Reta(p2, p3);
+        Reta r3 = new Reta(p3, p4);
+        Reta r4 = new Reta(p4, p1);
 
         r1.bresenham();
         r2.bresenham();
@@ -50,7 +51,19 @@ public class Retangulo {
         //p1 = p2 = p3 = p4 = null;
         countPoints = 0;
     }
-
+    
+    public void transladar(int tx, int ty)
+    {
+        plotar(Color.WHITE);
+        
+        p1.transladar(tx,ty);
+        p2.transladar(tx,ty);
+        p3.transladar(tx,ty);
+        p4.transladar(tx,ty);
+        
+        plotar(Color.RED);
+    }
+    
     public void rotacionar(int grau)
     {
 
@@ -62,5 +75,10 @@ public class Retangulo {
         p4.rotacionar(grau);
 
         plotar(Color.red);
+    }
+    
+    public void setColor(Color c)
+    {
+        p1.color = p2.color = p3.color = p4.color = c;
     }
 }
