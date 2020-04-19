@@ -482,6 +482,35 @@ public class PaintBrushFrame extends javax.swing.JFrame{
         } else if (opcaoAlgoritmo == 11) {
             System.out.println(" - Transformações Geométricas 2D: reflexões XY");
         } else if (opcaoAlgoritmo == 12) {
+            if (reta.inserirPonto(p)) {
+                Point p1 = new Point(reta.getP1().x, reta.getP2().y, getGraphics());//x1 y2
+                Point p2 = new Point(reta.getP2().x, reta.getP2().y, getGraphics());//x2 y2
+                Point p3 = new Point(reta.getP1().x, reta.getP1().y, getGraphics());//x1 y1
+                Point p4 = new Point(reta.getP2().x, reta.getP2().y, getGraphics());//x2 y1
+
+                Reta r1 = new Reta(p1, p2);
+                Reta r2 = new Reta(p2, p4);
+                Reta r3 = new Reta(p3, p4);
+                Reta r4 = new Reta(p1, p3);
+
+                r1.dda(p1, p2);
+                r2.dda(p2, p4);
+                r3.dda(p3, p4);
+                r4.dda(p1, p3);
+
+                retaList.add(r1);
+                retaList.add(r2);
+                retaList.add(r3);
+                retaList.add(r4);
+
+                for(int i = 0; i < retaList.size(); i ++){
+                    Reta r = retaList.get(i);
+
+                    r.cohenSutherland(r.getP1(),r.getP2(), reta.getP1(), reta.getP2());
+                }
+
+            }
+            reta = new Reta();
             System.out.println("Recorte de Regiões: Algoritmo de Cohen-Sutherland");
         } else if (opcaoAlgoritmo == 13) {
             System.out.println("Recorte de Regiões: Algoritmo de Liang Barsky");
