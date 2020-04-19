@@ -24,6 +24,7 @@ public class Point
     public Graphics2D g2d;
     public static int largura;
     public static int altura;
+    public Color color;
     
     Point(){
        this(0,0,null);
@@ -34,14 +35,14 @@ public class Point
     }
     
     Point(int x, int y, Graphics g, int p_altura, int p_largura ){
-       this(x,y,(Graphics2D) g, p_altura, p_largura);
+       this(x,y,(Graphics2D) g, p_altura, p_largura, Color.RED);
     }
     
     Point(int x, int y, Graphics2D g2d){
-       this(x,y,g2d, 0, 0);
+       this(x,y,g2d, 0, 0, Color.RED);
     }
     
-    Point(int x, int y, Graphics2D g2d, int p_altura, int p_largura){
+    Point(int x, int y, Graphics2D g2d, int p_altura, int p_largura, Color cor){
        this.x = x;
        this.y = y;
        this.g2d = g2d;
@@ -49,17 +50,13 @@ public class Point
         this.altura = p_altura;
        if(p_largura > 0)
         this.largura = p_largura;
+       this.color = cor;
     }
     
     public void draw()
     {
-      draw(Color.red);
-    }
-
-    public void draw(Color c)
-    {
         g2d.setStroke(new BasicStroke(0.1f));
-        g2d.setColor(c);
+        g2d.setColor(color);
         
         int drawX = x;
         int drawY = y;
@@ -90,4 +87,16 @@ public class Point
          System.out.println("X: " + x + " Y: " + y + " X': " + this.x + " Y': " + this.y );
     }
     
+    public void transladar(int tx, int ty)
+    {
+        this.x += tx;
+        this.y += ty;
+    }
+    
+    @Override
+    public Point clone()
+    {
+        Point pontoClonado = new Point(x, y, g2d, altura, largura,color);
+        return pontoClonado;
+    }
 }

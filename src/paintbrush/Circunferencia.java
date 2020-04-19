@@ -5,15 +5,21 @@
  */
 package paintbrush;
 
+import java.awt.Color;
+
 /**
  *
  * @author wisne
  */
 public class Circunferencia {
-    private static Point centro = null;
-    private static Point raio = null;
-    
+    private Point centro;
+    private Point raio;
     private static int countPoints = 0;
+    
+    Circunferencia()
+    {
+        setColor(Color.red);
+    }
     
     public boolean inserirPonto(Point p) {
         if(countPoints  % 2 == 0){
@@ -41,7 +47,9 @@ public class Circunferencia {
     {
         int r = distancia(centro, raio);
         int x = 0, y = r, p = 3 - 2 * r;
-        Point pontoDesenhar = new Point(x , y, raio.g2d);
+        Point pontoDesenhar = raio.clone();// new Point(x , y, raio.g2d);
+        pontoDesenhar.x = x;
+        pontoDesenhar.y = y;
         desenharPontosDoCirculo(centro, pontoDesenhar);
         
         while(x < y)
@@ -56,12 +64,15 @@ public class Circunferencia {
                 y = y - 1;
             }
             x++;
-            pontoDesenhar = new Point(x , y, raio.g2d);
+            //pontoDesenhar = new Point(x , y, raio.g2d);
+            pontoDesenhar = raio.clone();// new Point(x , y, raio.g2d);
+            pontoDesenhar.x = x;
+            pontoDesenhar.y = y;
             desenharPontosDoCirculo(centro, pontoDesenhar);
         }
         
-        centro = null;
-        raio = null;
+        //centro = null;
+        //raio = null;
     }
     
     private int distancia(Point p1, Point p2)
@@ -72,28 +83,48 @@ public class Circunferencia {
     
     private void desenharPontosDoCirculo(Point pc, Point p)
     {
-        Point pontoDesenhar = new Point(pc.x + p.x, pc.y + p.y, p.g2d);
+        Point pontoDesenhar = new Point(pc.x + p.x, pc.y + p.y, p.g2d, p.altura, p.largura, p.color);
         pontoDesenhar.draw();
         
-        pontoDesenhar = new Point(pc.x - p.x, pc.y + p.y, p.g2d);
+        pontoDesenhar = new Point(pc.x - p.x, pc.y + p.y, p.g2d, p.altura, p.largura, p.color);
         pontoDesenhar.draw();
         
-        pontoDesenhar = new Point(pc.x + p.x, pc.y - p.y, p.g2d);
+        pontoDesenhar = new Point(pc.x + p.x, pc.y - p.y, p.g2d, p.altura, p.largura, p.color);
         pontoDesenhar.draw();
         
-        pontoDesenhar = new Point(pc.x - p.x, pc.y - p.y, p.g2d);
+        pontoDesenhar = new Point(pc.x - p.x, pc.y - p.y, p.g2d, p.altura, p.largura, p.color);
         pontoDesenhar.draw();
         
-        pontoDesenhar = new Point(pc.x + p.y, pc.y + p.x, p.g2d);
+        pontoDesenhar = new Point(pc.x + p.y, pc.y + p.x, p.g2d, p.altura, p.largura, p.color);
         pontoDesenhar.draw();
         
-        pontoDesenhar = new Point(pc.x - p.y, pc.y + p.x, p.g2d);
+        pontoDesenhar = new Point(pc.x - p.y, pc.y + p.x, p.g2d, p.altura, p.largura, p.color);
         pontoDesenhar.draw();
         
-        pontoDesenhar = new Point(pc.x + p.y, pc.y - p.x, p.g2d);
+        pontoDesenhar = new Point(pc.x + p.y, pc.y - p.x, p.g2d, p.altura, p.largura, p.color);
         pontoDesenhar.draw();
         
-        pontoDesenhar = new Point(pc.x - p.y, pc.y - p.x, p.g2d);
+        pontoDesenhar = new Point(pc.x - p.y, pc.y - p.x, p.g2d, p.altura, p.largura, p.color);
         pontoDesenhar.draw();
+    }
+    
+    public void transladar(int tx, int ty)
+    {
+        setColor(Color.white);
+        bresenhams();
+        
+        centro.transladar(tx, ty);
+        raio.transladar(tx, ty);
+        
+        setColor(Color.red);
+        bresenhams();
+    }
+    
+    public void setColor(Color c)
+    {
+        if(centro != null)
+            centro.color = c;
+        if(raio != null)
+            raio.color = c;
     }
 }

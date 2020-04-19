@@ -17,21 +17,15 @@ public class Reta {
 
     private Point p1;
     private Point p2;
-    private Color cor;
     private static int countPoints = 0;
 
     Reta(){
         this(null, null);
     }
-    
-    Reta(Point p1, Point p2){
-        this(p1,p2,Color.red);
-    }
 
-    Reta(Point p1, Point p2, Color c){
+    Reta(Point p1, Point p2){
         this.p1 = p1;
         this.p2 = p2;
-        this.setColor(c);
     }
 
     public boolean inserirPonto(Point p) {
@@ -72,8 +66,10 @@ public class Reta {
 
         double x = (double) p1.x, y = (double) p1.y;
 
-        Point pontoDesenhar = new Point((int) Math.round(x), (int) Math.round(y), p1.g2d);
-        pontoDesenhar.draw(cor);
+        Point pontoDesenhar = p1.clone(); // new Point((int) Math.round(x), (int) Math.round(y), p1.g2d);
+        pontoDesenhar.x = (int) Math.round(x);
+        pontoDesenhar.y = (int) Math.round(y);
+        pontoDesenhar.draw();
 
         int passos = Math.max(Math.abs(deltaX), Math.abs(deltaY));
         double xIncr = ((double) deltaX) / ((double) passos);
@@ -82,8 +78,11 @@ public class Reta {
         for (int k = 1; k <= passos; k++) {
             x += xIncr;
             y += yIncr;
-            pontoDesenhar = new Point((int) Math.round(x), (int) Math.round(y), p1.g2d);
-            pontoDesenhar.draw(cor);
+            pontoDesenhar.x = (int) Math.round(x);
+            pontoDesenhar.y = (int) Math.round(y);
+            pontoDesenhar.draw();
+            //pontoDesenhar = new Point((int) Math.round(x), (int) Math.round(y), p1.g2d);
+            pontoDesenhar.draw();
         }
 
         //p1 = p2 = null;
@@ -104,7 +103,7 @@ public class Reta {
         int x1 = p1.x, y1 = p1.y , x2 = p2.x, y2 = p2.y;
 
         System.out.println("============ Bresenham ============");
-        System.out.println("X1: " + x1 + " Y1: " + y1 + " X2: " + x2 + " Y2: " + y2 + " Color" + cor);
+        System.out.println("X1: " + x1 + " Y1: " + y1 + " X2: " + x2 + " Y2: " + y2 + " Color" + p1.color);
         int deltaX = x2 - x1;
         int deltaY = y2 - y1;
         int x = x1;
@@ -114,8 +113,8 @@ public class Reta {
 
         // //colore(x, y, cor);
         // buffer.setRGB(x, y, Color.BLACK.getRGB());
-        Point pontoDesenhar = new Point(x, y, p1.g2d);
-        pontoDesenhar.draw(cor);
+        Point pontoDesenhar = p1.clone();
+        pontoDesenhar.draw();
 
         if (deltaX < 0) {
             deltaX = -deltaX;
@@ -147,8 +146,10 @@ public class Reta {
 
                 //colore(x, y, cor);
                 // buffer.setRGB(x, y, Color.BLACK.getRGB());
-                pontoDesenhar = new Point(x, y, p1.g2d);
-                pontoDesenhar.draw(cor);
+                //pontoDesenhar = new Point(x, y, p1.g2d);
+                pontoDesenhar.x = x;
+                pontoDesenhar.y = y;
+                pontoDesenhar.draw();
             }// fim for
         }// fim if
         else { // 2 caso
@@ -166,8 +167,10 @@ public class Reta {
                 }
                 // //colore(x, y, cor);
                 // buffer.setRGB(x, y, Color.BLACK.getRGB());
-                pontoDesenhar = new Point(x, y, p1.g2d);
-                pontoDesenhar.draw(cor);
+                //pontoDesenhar = new Point(x, y, p1.g2d);
+                pontoDesenhar.x = x;
+                pontoDesenhar.y = y;
+                pontoDesenhar.draw();
             }// fim for
         }// fim else
         //p1 = p2 = null;
@@ -177,7 +180,7 @@ public class Reta {
     public void rotacionar(int grau)
     {
         System.out.println("============ Rotação de Reta ============");
-        cor = Color.white;
+        p1.color = p2.color = Color.white;
         bresenham();
 
         double grauRad = Math.toRadians(grau);
@@ -196,12 +199,12 @@ public class Reta {
         // p1.rotacionar(grau);
         // p2.rotacionar(grau);
 
-        cor = Color.red;
+        p1.color = p2.color = Color.red;
         bresenham();
     }
 
     public void escalar(double valorA, double valorB){
-        cor = Color.white;
+        p1.color = p2.color = Color.white;
         bresenham();
 
         int deltaX = p2.x - p1.x;
@@ -213,28 +216,32 @@ public class Reta {
         p2.x += p1.x;
         p2.y += p1.y;
 
-        cor = Color.red;
+        p1.color = p2.color = Color.red;
         bresenham();
         
     }
 
-    public void transladar(int valorA, int valorB)
+    public void transladar(int tx, int ty)
     {
-        cor = Color.white;
+        p1.color = p2.color = Color.white;
         bresenham();
-
+        
+        /*
         p1.x = p1.x + valorA;
         p2.x = p2.x + valorA;
         p1.y = p1.y + valorB;
-        p2.y = p2.y + valorB;
+        p2.y = p2.y + valorB;*/
+        
+        p1.transladar(tx, ty);
+        p2.transladar(tx, ty);
 
-        cor = Color.red;
+        p1.color = p2.color = Color.red;
         bresenham();
     }
   
     public void reflexaoX()
     {
-        cor = Color.white;
+        p1.color = p2.color = Color.white;
         bresenham();
 
         int deltaX = (p2.x - p1.x);
@@ -246,13 +253,13 @@ public class Reta {
         p2.x = novoX2;
         p2.y = novoY2;
         
-        cor = Color.red;
+        p1.color = p2.color = Color.red;
         bresenham();
     }
 
     public void reflexaoY()
     {
-        cor = Color.white;
+        p1.color = p2.color = Color.white;
         bresenham();
 
         int deltaX = (p2.x - p1.x) * -1;
@@ -264,13 +271,13 @@ public class Reta {
         p2.x = novoX2;
         p2.y = novoY2;
         
-        cor = Color.red;
+        p1.color = p2.color = Color.red;
         bresenham();
     }
 
     public void reflexaoXY()
     {
-        cor = Color.white;
+        p1.color = p2.color = Color.white;
         bresenham();
 
         int deltaX = (p2.x - p1.x) * -1;
@@ -282,18 +289,13 @@ public class Reta {
         p2.x = novoX2;
         p2.y = novoY2;
         
-        cor = Color.red;
+        p1.color = p2.color = Color.red;
         bresenham();
     }
-
+    
     public void setColor(Color c)
     {
-        cor = c;
-    }
-
-    public Color getColor()
-    {
-        return cor;
+        p1.color = p2.color = c;
     }
 
     public int obtemCodigo( int xDado, int yDado, int xMin, int yMin, int xMax, int yMax ) {
