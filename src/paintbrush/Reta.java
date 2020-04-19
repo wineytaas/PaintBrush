@@ -7,7 +7,6 @@ package paintbrush;
 
 import java.awt.Color;
 
-import javafx.scene.effect.ColorAdjust;
 
 /**
  *
