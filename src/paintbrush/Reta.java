@@ -4,9 +4,8 @@ import java.awt.Color;
 
 
 /**
- *
- * @author Disney
  * @author Ernesto
+ * @author Wisney
  */
 public class Reta {
 

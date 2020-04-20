@@ -2,6 +2,10 @@ package paintbrush;
 
 import java.awt.Color;
 
+/**
+ * @author Ernesto
+ * @author Wisney
+ */
 public class Retangulo {
     private Point p1;
     private Point p2;

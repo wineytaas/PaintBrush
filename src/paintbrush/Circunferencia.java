@@ -8,8 +8,8 @@ package paintbrush;
 import java.awt.Color;
 
 /**
- *
- * @author wisne
+ * @author Ernesto
+ * @author Wisney
  */
 public class Circunferencia {
     private Point centro;

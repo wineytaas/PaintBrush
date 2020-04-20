@@ -15,9 +15,8 @@ import javax.swing.*;
 
 
 /**
- *
- * @author Disney
  * @author Ernesto
+ * @author Wisney
  */
 public class PaintBrushFrame extends javax.swing.JFrame{
 
@@ -25,7 +24,7 @@ public class PaintBrushFrame extends javax.swing.JFrame{
      * Declare variables
      */
     private static final long serialVersionUID = 1L;
-    public static int opcaoAlgoritmo = 0;
+    public static int opcaoAlgoritmo = 1;
     public List<Reta> retaList = new ArrayList<Reta>();
     public Reta reta;
     public List<Retangulo> retanguloList = new ArrayList<Retangulo>();
@@ -83,6 +82,11 @@ public class PaintBrushFrame extends javax.swing.JFrame{
         jMenuAcoes.setText("Ações");
 
         jMenuItemPontos.setText("Rasterização de Pontos");
+        jMenuItemPontos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(final java.awt.event.MouseEvent evt) {
+                jMenuItemPontosMousePressed(evt);
+            }
+        });
         jMenuAcoes.add(jMenuItemPontos);
 
         jMenuBar1.add(jMenuAcoes);
@@ -221,6 +225,16 @@ public class PaintBrushFrame extends javax.swing.JFrame{
         pack();
     }
 
+    private void jMenuItemPontosMousePressed(final java.awt.event.MouseEvent evt) {
+        opcaoAlgoritmo = 1;
+        System.out.println("Opção MousePressed: " + opcaoAlgoritmo);
+    }
+
+    private void jMenuItemRetaDDAMousePressed(final java.awt.event.MouseEvent evt) {
+        opcaoAlgoritmo = 2;
+        System.out.println("Opção MousePressed: " + opcaoAlgoritmo);
+    }
+
     private void retaBresenhamMenuItemMousePressed(final java.awt.event.MouseEvent evt) {
         opcaoAlgoritmo = 3;
         System.out.println("Opção MousePressed: " + opcaoAlgoritmo);
@@ -228,11 +242,6 @@ public class PaintBrushFrame extends javax.swing.JFrame{
 
     private void retanguloMenuItemMousePressed(final java.awt.event.MouseEvent evt) {
         opcaoAlgoritmo = 4;
-        System.out.println("Opção MousePressed: " + opcaoAlgoritmo);
-    }
-
-    private void jMenuItemRetaDDAMousePressed(final java.awt.event.MouseEvent evt) {
-        opcaoAlgoritmo = 2;
         System.out.println("Opção MousePressed: " + opcaoAlgoritmo);
     }
 
@@ -380,6 +389,10 @@ public class PaintBrushFrame extends javax.swing.JFrame{
         opcaoAlgoritmo = 12;
         System.out.println("Opção MousePressed: " + opcaoAlgoritmo);
     }
+
+    
+
+    
     
 
     public static void main(final String args[]) {
@@ -456,6 +469,7 @@ public class PaintBrushFrame extends javax.swing.JFrame{
             System.out.println(" NADA ");
         } else if (opcaoAlgoritmo == 1) {
             System.out.println(" Pontos ");
+            p.draw();
         } else if (opcaoAlgoritmo == 2) {
             System.out.println(" Reta DDA ");
             if (reta.dda(p)) {

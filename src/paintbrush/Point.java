@@ -7,9 +7,8 @@ import java.awt.Graphics2D;
 import java.awt.geom.Line2D;
 
 /**
- *
  * @author Ernesto
- * @author Wisney Tadeu
+ * @author Wisney
  */
 public class Point
 {
