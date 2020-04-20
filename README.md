@@ -32,3 +32,9 @@ A  participação  de  todos  dos  integrantes  do  grupo  no  trabalho  será  
 ### 4. Distribuição de Pontos ExtrasOs grupos que desejarem podem realizar uma ou mais das atividades seguintes para obtençãode pontos extras nesse trabalho:
 * Preenchimento de áreas delimitadas por polígonos usando um dos algoritmos estudadosem sala, comoBoundary Fille/ouFlood Fill(1 ponto).
 * Salvar/Restaurar estruturas de dados internas doCanvasem/de um arquivo (2 pontos).
+### 5 Como dar build
+1. cd src/paintbrush
+2. java Point.java
+3. java Reta.java
+4. java Retangulo.java
+5. java Circunferencia.java
