@@ -469,7 +469,7 @@ public class PaintBrushFrame extends javax.swing.JFrame{
             System.out.println(" NADA ");
         } else if (opcaoAlgoritmo == 1) {
             System.out.println(" Pontos ");
-            p.draw();
+            p.draw(10);
         } else if (opcaoAlgoritmo == 2) {
             System.out.println(" Reta DDA ");
             if (reta.dda(p)) {

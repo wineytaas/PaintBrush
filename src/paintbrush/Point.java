@@ -18,7 +18,8 @@ public class Point
     public static int largura;
     public static int altura;
     public Color color;
-    
+    public float tamanho;
+
     Point(){
        this(0,0,null);
     }
@@ -44,11 +45,16 @@ public class Point
        if(p_largura > 0)
         this.largura = p_largura;
        this.color = cor;
+       this.tamanho = 0.1f;
     }
     
     public void draw()
     {
-        g2d.setStroke(new BasicStroke(0.1f));
+        draw(tamanho);
+    }
+    public void draw(float tamanho)
+    {
+        g2d.setStroke(new BasicStroke(tamanho));
         g2d.setColor(color);
         
         int drawX = x;
