@@ -14,7 +14,6 @@ import java.awt.geom.Line2D;
 /**
  *
  * @author Ernesto
- * @author Raiana
  * @author Wisney Tadeu
  */
 public class Point
