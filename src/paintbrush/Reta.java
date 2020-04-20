@@ -17,6 +17,8 @@ public class Reta {
 
     private Point p1;
     private Point p2;
+    public double u1;
+    public double u2;
     private static int countPoints = 0;
 
     Reta(){
@@ -410,6 +412,77 @@ public class Reta {
             this.bresenham();
         }
     }
+       
+    public boolean clipset(double p, double q) {
+        double r = q / p;
+
+        // Implementacao da professora
+        if (p < 0) {
+            if (r > 1) {
+                return false;
+            } else if (r > u1) {
+                u1 = r;
+            }
+        } else if (p > 0) {
+            if (r < 0) {
+                return false;
+            } else if (r < u2) {
+                u2 = r;
+            }
+        } else if (q < 0) {
+            return false;
+        }
+        return true;
+    }
+    
+    public void liang(Point p1Dado, Point p2Dado, Point pMin, Point pMax) {
+      
+        double x1Dado =  p1Dado.x;
+        double y1Dado = p1Dado.y;
+        double x2Dado = p2Dado.x;
+        double y2Dado = p2Dado.y;
+        int xMin = pMin.x;
+        int yMin = pMin.y;
+        int xMax = pMax.x;
+        int yMax = pMax.y;
+
+        double dx = x2Dado - x1Dado,
+               dy = y2Dado - y1Dado;
+        
+        this.u1 = 0.0;
+        this.u2 = 1.0;
+
+
+        if (clipset(-dx, x1Dado - xMin)) {
+            
+            if (clipset(dx, xMax - x1Dado)) {
+                
+                if (clipset(-dy, y1Dado - yMin)) {
+                    
+                    if (clipset(dy, yMax - y1Dado)) {
+                        
+
+                        if (u2 < 1.0) {
+                            x2Dado = x1Dado + dx * u2;
+                            y2Dado = y1Dado + dy * u2;
+                        }
+                        if (u1 > 0.0) {
+                            x1Dado = x1Dado + dx * u1;
+                            y1Dado = y1Dado + dy * u1;
+                        }
+
+                        dda(p1Dado, p2Dado);
+                        
+                        p1.x = (int)(Math.round(x1Dado));
+                        p1.y = (int)(Math.round(y1Dado));
+                        p2.x = (int)(Math.round(x2Dado));
+                        p2.y = (int)(Math.round(y2Dado));
+                    }
+                }
+            }
+        }// fim todos if's
+
+    }// fim metodo liang
 
     public Point getP1() {
         return p1;

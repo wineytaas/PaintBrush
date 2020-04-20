@@ -540,6 +540,41 @@ public class PaintBrushFrame extends javax.swing.JFrame{
             System.out.println("Recorte de Regiões: Algoritmo de Cohen-Sutherland");
         } else if (opcaoAlgoritmo == 13) {
             System.out.println("Recorte de Regiões: Algoritmo de Liang Barsky");
+            if (reta.inserirPonto(p)) {
+                Point p1 = reta.getP1().clone();
+                Point p2 = reta.getP1().clone();
+                p2.y = reta.getP2().y;
+                Point p3 = reta.getP2().clone();
+                Point p4 = reta.getP2().clone();
+                p4.y = reta.getP1().y;
+                /*Point p1 = new Point(reta.getP1().x, reta.getP2().y, getGraphics());//x1 y2
+                Point p2 = new Point(reta.getP2().x, reta.getP2().y, getGraphics());//x2 y2
+                Point p3 = new Point(reta.getP1().x, reta.getP1().y, getGraphics());//x1 y1
+                Point p4 = new Point(reta.getP2().x, reta.getP1().y, getGraphics());//x2 y1*/
+
+                Reta r1 = new Reta(p1, p2);
+                Reta r2 = new Reta(p2, p3);
+                Reta r3 = new Reta(p3, p4);
+                Reta r4 = new Reta(p4, p1);
+
+                r1.bresenham();
+                r2.bresenham();
+                r3.bresenham();
+                r4.bresenham();
+
+                retaList.add(r1);
+                retaList.add(r2);
+                retaList.add(r3);
+                retaList.add(r4);
+
+                for(int i = 0; i < retaList.size(); i ++){
+                    Reta r = retaList.get(i);
+
+                    r.liang(r.getP1(),r.getP2(), reta.getP1(), reta.getP2());
+                }
+
+                reta = new Reta();
+            }
         }
     }
 
