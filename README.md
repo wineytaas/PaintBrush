@@ -34,7 +34,9 @@ A  participação  de  todos  dos  integrantes  do  grupo  no  trabalho  será  
 * Salvar/Restaurar estruturas de dados internas doCanvasem/de um arquivo (2 pontos).
 ### 5 Como dar build
 1. cd src/paintbrush
-2. java Point.java
-3. java Reta.java
-4. java Retangulo.java
-5. java Circunferencia.java
+2. javac Point.java
+3. javac Reta.java
+4. javac Retangulo.java
+5. javac Circunferencia.java
+6. javac PaintBrushFrame.java
+7. java PaintBrushFrame
