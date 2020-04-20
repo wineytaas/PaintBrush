@@ -358,12 +358,17 @@ public class Reta {
         }
         
         if(aceito) {
+            setColor(Color.white);
+            this.bresenham();
+
             p1.x = x1Dado;
             p1.y = y1Dado;
             p2.x = x2Dado;
             p2.y= y2Dado;
 
-            this.dda(p1Dado, p2Dado);
+            // this.dda(p1Dado, p2Dado);
+            setColor(Color.red);
+            this.bresenham();
         }
     }
        

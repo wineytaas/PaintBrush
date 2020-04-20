@@ -18,11 +18,12 @@ import javax.swing.*;
  *
  * @author Disney
  * @author Ernesto
-*/
+ */
 public class PaintBrushFrame extends javax.swing.JFrame{
 
-
-
+    /**
+     * Declare variables
+     */
     private static final long serialVersionUID = 1L;
     public static int opcaoAlgoritmo = 0;
     public List<Reta> retaList = new ArrayList<Reta>();
@@ -37,6 +38,7 @@ public class PaintBrushFrame extends javax.swing.JFrame{
         initComponents();
     }
 
+    @SuppressWarnings("unchecked")
     private void initComponents() {
 
         retangulo = new Retangulo();
@@ -64,6 +66,7 @@ public class PaintBrushFrame extends javax.swing.JFrame{
         jMenuItemTransformacoesReflexaoXY = new javax.swing.JMenuItem();
         jMenuJanela = new javax.swing.JMenu();
         jMenuItemJanelaCohenSutherland = new javax.swing.JMenuItem();
+        jMenuItemJanelaLiangBarsky = new javax.swing.JMenuItem();
 
         jMenu5.setText("jMenu5");
 
@@ -191,6 +194,16 @@ public class PaintBrushFrame extends javax.swing.JFrame{
             }
         });
         jMenuJanela.add(jMenuItemJanelaCohenSutherland);
+
+        
+        jMenuItemJanelaLiangBarsky.setText("Liang-Barsky");
+        jMenuItemJanelaLiangBarsky.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(final java.awt.event.MouseEvent evt) {
+                jMenuItemJanelaLiangBarskyMousePressed(evt);
+            }
+        });
+        jMenuJanela.add(jMenuItemJanelaLiangBarsky);
+
         jMenuBar1.add(jMenuJanela);
 
         setJMenuBar(jMenuBar1);
@@ -344,6 +357,12 @@ public class PaintBrushFrame extends javax.swing.JFrame{
         System.out.println("Opção MousePressed: " + opcaoAlgoritmo);
     }
 
+    private void jMenuItemJanelaLiangBarskyMousePressed(final java.awt.event.MouseEvent evt) {
+        opcaoAlgoritmo = 12;
+        System.out.println("Opção MousePressed: " + opcaoAlgoritmo);
+    }
+    
+
     public static void main(final String args[]) {
         try {
             for (final javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -365,7 +384,7 @@ public class PaintBrushFrame extends javax.swing.JFrame{
             java.util.logging.Logger.getLogger(PaintBrushFrame.class.getName()).log(java.util.logging.Level.SEVERE,
                     null, ex);
         }
-
+        
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 final PaintBrushFrame paintBrushFrame = new PaintBrushFrame();
@@ -376,15 +395,11 @@ public class PaintBrushFrame extends javax.swing.JFrame{
                     public void mousePressed(final MouseEvent e) {
                         paintBrushFrame.opcoes(new Point(e.getX(), e.getY(), e.getComponent().getGraphics(), e.getComponent().getHeight(), e.getComponent().getWidth()));
                     }
-
-                    @Override
-                    public void mouseReleased(final MouseEvent e) {
-                    }
                 });
             }
         });
     }
-
+    
     private javax.swing.JMenuItem jMenuItemPontos;
     private javax.swing.JMenu jMenuAcoes;
     private javax.swing.JMenu jMenuRetas;
@@ -404,6 +419,8 @@ public class PaintBrushFrame extends javax.swing.JFrame{
     private javax.swing.JMenuItem jMenuItemTransformacoesEscala;
     private javax.swing.JMenuItem jMenuItemTransformacoesReflexaoX;
     private javax.swing.JMenuItem jMenuItemJanelaCohenSutherland;
+    private javax.swing.JMenuItem jMenuItemJanelaLiangBarsky;
+    
     private javax.swing.JPanel jPanel1;
     private javax.swing.JMenuItem jMenuItemRetaDDA;
 
@@ -503,7 +520,6 @@ public class PaintBrushFrame extends javax.swing.JFrame{
                 Point p3 = reta.getP2().clone();
                 Point p4 = reta.getP2().clone();
                 p4.y = reta.getP1().y;
-
 
                 Reta r1 = new Reta(p1, p2);
                 Reta r2 = new Reta(p2, p3);
