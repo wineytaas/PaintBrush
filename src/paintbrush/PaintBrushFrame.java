@@ -249,87 +249,101 @@ public class PaintBrushFrame extends javax.swing.JFrame{
     private void jMenuItemTransformacoesTraslacaoMousePressed(final java.awt.event.MouseEvent evt) {
         opcaoAlgoritmo = 6;
         System.out.println("Opção MousePressed: " + opcaoAlgoritmo);
+        try{
+            JPanel p = new JPanel(new BorderLayout(5, 5));
+            JPanel labels = new JPanel(new GridLayout(0, 1, 2, 2));
+            labels.add(new JLabel("Fator a:", SwingConstants.RIGHT));
+            labels.add(new JLabel("Fator b:", SwingConstants.RIGHT));
+            p.add(labels, BorderLayout.WEST);
+            
 
-        JPanel p = new JPanel(new BorderLayout(5, 5));
-        JPanel labels = new JPanel(new GridLayout(0, 1, 2, 2));
-        labels.add(new JLabel("Fator a:", SwingConstants.RIGHT));
-        labels.add(new JLabel("Fator b:", SwingConstants.RIGHT));
-        p.add(labels, BorderLayout.WEST);
-        
+            JPanel controls = new JPanel(new GridLayout(0, 1, 2, 2));
+            JTextField a = new JTextField();
+            JTextField b = new JTextField();
+            controls.add(a);
+            controls.add(b);
+            p.add(controls, BorderLayout.CENTER);
 
-        JPanel controls = new JPanel(new GridLayout(0, 1, 2, 2));
-        JTextField a = new JTextField();
-        JTextField b = new JTextField();
-        controls.add(a);
-        controls.add(b);
-        p.add(controls, BorderLayout.CENTER);
+            JOptionPane.showMessageDialog(jPanel1, p, "Translação", JOptionPane.QUESTION_MESSAGE);
+            int valorA = Integer.parseInt(a.getText());
+            int valorB = Integer.parseInt(b.getText());
 
-        JOptionPane.showMessageDialog(jPanel1, p, "Translação", JOptionPane.QUESTION_MESSAGE);
-        int valorA = Integer.parseInt(a.getText());
-        int valorB = Integer.parseInt(b.getText());
-
-        for (Reta r : retaList) {
-            r.transladar(valorA,valorB);
+            for (Reta r : retaList) {
+                r.transladar(valorA,valorB);
+            }
+            
+            for (Retangulo r : retanguloList) {
+                r.transladar(valorA,valorB);
+            }
+            
+            for (Circunferencia c : circunferenciaList) {
+                c.transladar(valorA,valorB);
+            }
         }
-        
-        for (Retangulo r : retanguloList) {
-            r.transladar(valorA,valorB);
-        }
-        
-        for (Circunferencia c : circunferenciaList) {
-            c.transladar(valorA,valorB);
-        }
+        catch(Exception e)
+        {
 
+        }
     }
 
     private void jMenuItemTransformacoesRotacaoMousePressed(final java.awt.event.MouseEvent evt) {
         opcaoAlgoritmo = 7;
         System.out.println("Opção MousePressed: " + opcaoAlgoritmo);
-        int grau = Integer.parseInt(JOptionPane.showInputDialog(null, "Digite o grau: "));
-        
-        for (Reta r : retaList) {
-            r.rotacionar(grau);
+        try{
+            int grau = Integer.parseInt(JOptionPane.showInputDialog(null, "Digite o grau: "));
+            
+            for (Reta r : retaList) {
+                r.rotacionar(grau);
+            }
+
+            // for (Retangulo ret : retanguloList) {
+            //     ret.rotacionar(grau);
+            // }
         }
-
-        // for (Retangulo ret : retanguloList) {
-        //     ret.rotacionar(grau);
-        // }
-
+        catch(Exception e)
+        {
+            
+        }
     }
 
     private void jMenuItemTransformacoesEscalaMousePressed(final java.awt.event.MouseEvent evt) {
         opcaoAlgoritmo = 8;
         System.out.println("Opção MousePressed: " + opcaoAlgoritmo);
-        JPanel p = new JPanel(new BorderLayout(5, 5));
-        JPanel labels = new JPanel(new GridLayout(0, 1, 2, 2));
-        labels.add(new JLabel("Fator a:", SwingConstants.RIGHT));
-        labels.add(new JLabel("Fator b:", SwingConstants.RIGHT));
-        p.add(labels, BorderLayout.WEST);
-        
+        try{
+            JPanel p = new JPanel(new BorderLayout(5, 5));
+            JPanel labels = new JPanel(new GridLayout(0, 1, 2, 2));
+            labels.add(new JLabel("Fator a:", SwingConstants.RIGHT));
+            labels.add(new JLabel("Fator b:", SwingConstants.RIGHT));
+            p.add(labels, BorderLayout.WEST);
+            
 
-        JPanel controls = new JPanel(new GridLayout(0, 1, 2, 2));
-        JTextField a = new JTextField();
-        JTextField b = new JTextField();
-        controls.add(a);
-        controls.add(b);
-        p.add(controls, BorderLayout.CENTER);
+            JPanel controls = new JPanel(new GridLayout(0, 1, 2, 2));
+            JTextField a = new JTextField();
+            JTextField b = new JTextField();
+            controls.add(a);
+            controls.add(b);
+            p.add(controls, BorderLayout.CENTER);
 
-        JOptionPane.showMessageDialog(jPanel1, p, "Escala", JOptionPane.QUESTION_MESSAGE);
-        double valorA = Double.parseDouble(a.getText());
-        double valorB = Double.parseDouble(b.getText());
-        
-        for (Reta r : retaList) {
-            r.escalar(valorA, valorB);
+            JOptionPane.showMessageDialog(jPanel1, p, "Escala", JOptionPane.QUESTION_MESSAGE);
+            double valorA = Double.parseDouble(a.getText());
+            double valorB = Double.parseDouble(b.getText());
+            
+            for (Reta r : retaList) {
+                r.escalar(valorA, valorB);
+            }
+            
+            for (Retangulo r : retanguloList) {
+                r.escalar(valorA, valorB);
+            }
+            
+            for (Circunferencia c : circunferenciaList) {
+                c.escalar(valorA, valorB);
+            }
         }
-        
-        for (Retangulo r : retanguloList) {
-            r.escalar(valorA, valorB);
+        catch(Exception e)
+        {
+            
         }
-        
-        for (Circunferencia c : circunferenciaList) {
-            c.escalar(valorA, valorB);
-        }
-
     }
 
     private void jMenuItemTransformacoesReflexaoXMousePressed(final java.awt.event.MouseEvent evt) {
@@ -412,7 +426,7 @@ public class PaintBrushFrame extends javax.swing.JFrame{
             }
         });
     }
-    
+
     private javax.swing.JMenuItem jMenuItemPontos;
     private javax.swing.JMenu jMenuAcoes;
     private javax.swing.JMenu jMenuRetas;
