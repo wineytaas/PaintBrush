@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package paintbrush;
 
 import java.awt.BasicStroke;
@@ -14,7 +9,6 @@ import java.awt.geom.Line2D;
 /**
  *
  * @author Ernesto
- * @author Raiana
  * @author Wisney Tadeu
  */
 public class Point
@@ -60,16 +54,7 @@ public class Point
         
         int drawX = x;
         int drawY = y;
-        
-        /*if(largura > 0 && altura > 0)
-        {
-            int meioX = largura/2;
-            int meioY = altura/2;
-            
-            drawX = meioX + (x/2);
-            drawY = meioY + (y/2);
-        }*/
-        
+
         g2d.draw(new Line2D.Double(drawX, drawY, drawX, drawY));
     }
 

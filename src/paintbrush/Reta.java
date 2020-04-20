@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package paintbrush;
 
 import java.awt.Color;
@@ -68,7 +63,7 @@ public class Reta {
 
         double x = (double) p1.x, y = (double) p1.y;
 
-        Point pontoDesenhar = p1.clone(); // new Point((int) Math.round(x), (int) Math.round(y), p1.g2d);
+        Point pontoDesenhar = p1.clone(); 
         pontoDesenhar.x = (int) Math.round(x);
         pontoDesenhar.y = (int) Math.round(y);
         pontoDesenhar.draw();
@@ -83,11 +78,9 @@ public class Reta {
             pontoDesenhar.x = (int) Math.round(x);
             pontoDesenhar.y = (int) Math.round(y);
             pontoDesenhar.draw();
-            //pontoDesenhar = new Point((int) Math.round(x), (int) Math.round(y), p1.g2d);
             pontoDesenhar.draw();
         }
 
-        //p1 = p2 = null;
         countPoints = 0;
     }
 
@@ -112,9 +105,6 @@ public class Reta {
         int y = y1;
 
         int xIncr, yIncr, p, c1, c2;
-
-        // //colore(x, y, cor);
-        // buffer.setRGB(x, y, Color.BLACK.getRGB());
         Point pontoDesenhar = p1.clone();
         pontoDesenhar.draw();
 
@@ -132,7 +122,7 @@ public class Reta {
             yIncr = 1;
         }
 
-        if (deltaX > deltaY) { // 1 caso
+        if (deltaX > deltaY) { 
             p = 2 * deltaY - deltaX;
             c1 = 2 * deltaY;
             c2 = 2 * (deltaY - deltaX);
@@ -145,16 +135,12 @@ public class Reta {
                     p += c2;
                     y += yIncr;
                 }
-
-                //colore(x, y, cor);
-                // buffer.setRGB(x, y, Color.BLACK.getRGB());
-                //pontoDesenhar = new Point(x, y, p1.g2d);
                 pontoDesenhar.x = x;
                 pontoDesenhar.y = y;
                 pontoDesenhar.draw();
-            }// fim for
-        }// fim if
-        else { // 2 caso
+            }
+        }
+        else { 
             p = 2 * deltaX - deltaY;
             c1 = 2 * deltaX;
             c2 = 2 * (deltaX - deltaY);
@@ -167,15 +153,11 @@ public class Reta {
                     p += c2;
                     x += xIncr;
                 }
-                // //colore(x, y, cor);
-                // buffer.setRGB(x, y, Color.BLACK.getRGB());
-                //pontoDesenhar = new Point(x, y, p1.g2d);
                 pontoDesenhar.x = x;
                 pontoDesenhar.y = y;
                 pontoDesenhar.draw();
-            }// fim for
-        }// fim else
-        //p1 = p2 = null;
+            }
+        }
         countPoints = 0;
     }
 
@@ -197,9 +179,6 @@ public class Reta {
 
         p2.x = novox2 + p1.x;
         p2.y = novoy2 + p1.y;
-        
-        // p1.rotacionar(grau);
-        // p2.rotacionar(grau);
 
         setColor(Color.red);
         bresenham();
@@ -208,15 +187,6 @@ public class Reta {
     public void escalar(Double ex, Double ey){
         setColor(Color.white);
         bresenham();
-
-        /*int deltaX = p2.x - p1.x;
-        int deltaY = p2.y - p1.y;
-        
-        p2.x = (int)(Math.round(deltaX * valorA));
-        p2.y = (int)(Math.round(deltaY * valorB));
-        
-        p2.x += p1.x;
-        p2.y += p1.y;*/
 
         p1.escalar(ex, ey);
         p2.escalar(ex, ey);
@@ -230,13 +200,7 @@ public class Reta {
     {
         p1.color = p2.color = Color.white;
         bresenham();
-        
-        /*
-        p1.x = p1.x + valorA;
-        p2.x = p2.x + valorA;
-        p1.y = p1.y + valorB;
-        p2.y = p2.y + valorB;*/
-        
+
         p1.transladar(tx, ty);
         p2.transladar(tx, ty);
 
@@ -305,8 +269,6 @@ public class Reta {
 
     public int obtemCodigo( int xDado, int yDado, int xMin, int yMin, int xMax, int yMax ) {
         int codigo = 0;
-
-        // fazer para xInicio e xFim separado
         
         if (xDado < xMin) {
             codigo += 1;
@@ -357,29 +319,26 @@ public class Reta {
             if (c1 == 0 && c2 == 0) {
                 aceito = true;
                 feito = true;
-            } else if ((c1 & c2) != 0) { // totalmente fora da janela
+            } else if ((c1 & c2) != 0) { 
 
-                // marca a figura para nao ser desenhada
                 feito = true;
-            } else { // calcula
+            } else { 
 
-                // se c1 != 0 então cFora = c1
-                // senao cFora = c2
                 cFora = (c1 != 0) ? c1 : c2;
 
-                if (bit(cFora, 0) == 1) {// esq
+                if (bit(cFora, 0) == 1) {
                     xInt = xMin;
                     yInt = y1Dado + (y2Dado - y1Dado) * (xMin - x1Dado) / (x2Dado - x1Dado);
 
-                } else if (bit(cFora, 1) == 1) {// dir
+                } else if (bit(cFora, 1) == 1) {
                     xInt = xMax;
                     yInt = y1Dado + (y2Dado - y1Dado) * (xMax - x1Dado) / (x2Dado - x1Dado);
 
-                } else if (bit(cFora, 2) == 1) {// inferior
+                } else if (bit(cFora, 2) == 1) {
                     yInt = yMin;
                     xInt = x1Dado + (x2Dado - x1Dado) * (yMin - y1Dado) / (y2Dado - y1Dado);
 
-                } else if (bit(cFora, 3) == 1) { // superior
+                } else if (bit(cFora, 3) == 1) { 
                     yInt = yMax;
                     xInt = x1Dado + (x2Dado - x1Dado) * (yMax - y1Dado) / (y2Dado - y1Dado);
 
@@ -396,7 +355,7 @@ public class Reta {
                 }
 
             }
-        }// fim while
+        }
         
         if(aceito) {
             p1.x = x1Dado;
@@ -411,7 +370,6 @@ public class Reta {
     public boolean clipset(double p, double q) {
         double r = q / p;
 
-        // Implementacao da professora
         if (p < 0) {
             if (r > 1) {
                 return false;
@@ -467,7 +425,7 @@ public class Reta {
                         }
 
                         dda(p1Dado, p2Dado);
-                        
+
                         p1.x = (int)(Math.round(x1Dado));
                         p1.y = (int)(Math.round(y1Dado));
                         p2.x = (int)(Math.round(x2Dado));
@@ -475,9 +433,9 @@ public class Reta {
                     }
                 }
             }
-        }// fim todos if's
+        }
 
-    }// fim metodo liang
+    }
 
     public Point getP1() {
         return p1;
